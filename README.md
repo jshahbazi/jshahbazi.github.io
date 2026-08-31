@@ -1,116 +1,98 @@
-# Jekyll Now
+# John Shahbazian's blog
 
-**Jekyll** is a static site generator that's perfect for GitHub hosted blogs ([Jekyll Repository](https://github.com/jekyll/jekyll))
+A Markdown blog hosted by GitHub Pages at [jshahbazi.github.io](https://jshahbazi.github.io). Based on [Jekyll Now](https://github.com/barryclark/jekyll-now), with its MIT license retained.
 
-**Jekyll Now** makes it easier to create your Jekyll blog, by eliminating a lot of the up front setup.
+## Hosting
 
-- You don't need to touch the command line
-- You don't need to install/configure ruby, rvm/rbenv, ruby gems :relaxed:
-- You don't need to install runtime dependancies like markdown processors, Pygments, etc
-- It's easy to try out, you can just delete your forked repository if you don't like it
+GitHub Pages is already configured to build from `master`, at the repository root. Pushing or merging into `master` publishes automatically. Other branches do not publish. The build-check workflow validates changes without deploying them.
 
-In a few minutes you'll be set up with a minimal, responsive blog like the one below giving you more time to spend on writing epic blog posts!
+This is a static site: no database, server maintenance, or paid hosting is required for this public repository. Comments, authentication, and a browser-based CMS are not included.
 
-![Jekyll Now Theme Screenshot](/images/jekyll-now-theme-screenshot.jpg "Jekyll Now Theme Screenshot")
+## Write a post
 
-## Quick Start
+1. Create `_posts/YYYY-MM-DD-short-title.md`. Use the intended publication date.
+2. Add YAML front matter, followed by Markdown:
 
-### Step 1) Fork Jekyll Now to your User Repository
+   ```markdown
+   ---
+   layout: post
+   title: "Your post title"
+   description: "A short summary for search results and link previews."
+   ---
 
-Fork this repo, then rename the repository to yourgithubusername.github.io.
+   An opening paragraph that introduces the topic.
 
-Your Jekyll blog will often be viewable immediately at <http://yourgithubusername.github.io> (if it's not, you can force it to build by completing step 2)
+   <!--more-->
 
-![Step 1](/images/step1.gif "Step 1")
+   ## First section
 
-### Step 2) Customize and view your site
+   The rest of the post.
+   ```
 
-Enter your site name, description, avatar and many other options by editing the _config.yml file. You can easily turn on Google Analytics tracking, Disqus commenting and social icons here too.
+3. Preview and check the site.
+4. Commit and push the post to a working branch. Merge into `master` when ready to publish.
 
-Making a change to _config.yml (or any file in your repository) will force GitHub Pages to rebuild your site with jekyll. Your rebuilt site will be viewable a few seconds later at <http://yourgithubusername.github.io>
+The text before `<!--more-->` becomes the homepage excerpt. Posts appear newest first. Future-dated posts are omitted by default; GitHub does not rebuild simply because their publication date arrives. Push a change or trigger a Pages rebuild when that date arrives.
 
-> There are 3 different ways that you can make changes to your blog's files:
+Keep a post's filename stable after publication because the title portion determines its URL. If it must change, set an explicit `permalink` in its front matter to preserve the old address.
 
-> 1. Edit files within your new username.github.io repository in the browser at GitHub.com (shown below).
-> 2. Use a third party GitHub content editor, like [Prose by Development Seed](http://prose.io). It's optimized for use with Jekyll making markdown editing, writing drafts, and uploading images really easy.
-> 3. Clone down your repository and make updates locally, then push them to your GitHub repository.
+## Drafts
 
-![_config.yml](/images/config.png "_config.yml")
-  
-### Step 3) Publish your first blog post
+Copy `_drafts/post-template.md` to another filename under `_drafts/`. Preview drafts with:
 
-Edit `/_posts/2014-3-3-Hello-World.md` to publish your first blog post. This [Markdown Cheatsheet](http://www.jekyllnow.com/Markdown-Style-Guide/) might come in handy.
+```sh
+bundle exec jekyll serve --drafts
+```
 
-![First Post](/images/first-post.png "First Post")
+To publish, move the finished file into `_posts/` and add the date prefix. Normal builds exclude drafts.
 
-> You can add additional posts in the browser on GitHub.com too! Just hit the + icon in `/_posts/` to create new content. Just make sure to include the [front-matter](http://jekyllrb.com/docs/frontmatter/) block at the top of each new blog post and make sure the post's filename is in this format: year-month-day-title.md
+**Drafts committed to this public repository are public source code**, even though they are absent from the website. Keep sensitive or private writing outside the repository.
 
-## Local Development
+## Preview locally with Ruby
 
-1. Clone down your fork `git clone git@github.com:yourusername/yourusername.github.io.git`
-2. Install Jekyll `gem install jekyll`
-3. Install plug-ins that we use `gem install jemoji jekyll-sitemap`
-4. Serve the site and watch for markup/sass changes `jekyll serve --watch`
-5. View your website at http://0.0.0.0:4000
-6. Commit any changes and push everything to the master branch of your GitHub user repository. GitHub Pages will then rebuild and serve your website.
+Use Ruby 3.3 and Bundler; avoid macOS's bundled Ruby 2.6.
 
-## Moar!
+```sh
+bundle install
+bundle exec jekyll serve --host 127.0.0.1
+```
 
-I've created a more detailed walkthrough over at the Smashing Magazine website: [**Build A Blog With Jekyll And GitHub Pages**](http://www.smashingmagazine.com/?p=197342). Check it out if you'd like a more detailed walkthrough and some background on Jekyll. :metal:
+Open [localhost:4000](http://localhost:4000). Restart Jekyll after changing `_config.yml`. Dependencies are pinned by `Gemfile.lock`; the `github-pages` gem matches the supported Pages dependency set.
 
-It covers:
+## Preview with Docker
 
-- A more detailed walkthrough of setting up your Jekyll blog
-- Common issues that you might encounter while using Jekyll
-- Importing from Wordpress, using your own domain name, and blogging in your favorite editor
-- Theming in Jekyll, with Liquid templating examples
-- A quick look at Jekyll 2.0’s new features, including Sass/Coffeescript support and Collections
+If you do not have a suitable Ruby installation, run these from the repository root:
 
-## Jekyll Now Features
+```sh
+docker run --rm -v "$PWD:/site" -v jshahbazi-blog-gems:/usr/local/bundle -w /site ruby:3.3 bundle install
+docker run --rm -p 127.0.0.1:4000:4000 -v "$PWD:/site" -v jshahbazi-blog-gems:/usr/local/bundle -w /site ruby:3.3 bundle exec jekyll serve --host 0.0.0.0
+```
 
-✓ Command-line free _fork-first workflow_, using GitHub.com to create, customize and post to your blog  
-✓ Fully responsive and mobile optimized base theme (**[Theme Demo](http://jekyllnow.com)**)  
-✓ Sass/Coffeescript support using Jekyll 2.0  
-✓ Free hosting on your GitHub Pages user site  
-✓ Markdown blogging  
-✓ Syntax highlighting  
-✓ Disqus commenting  
-✓ Google Analytics integration  
-✓ SVG social icons for your footer  
-✓ 3 http requests, including your avatar  
-✓ Emoji in blog posts! :sparkling_heart: :sparkling_heart: :sparkling_heart:  
+The port is exposed only on your machine's loopback interface.
 
-✘ No installing dependancies  
-✘ No need to set up local development  
-✘ No configuring plugins  
-✘ No need to spend time on theming  
-✘ More time to code other things ... wait ✓!  
+## Check before publishing
 
-## Questions?
+```sh
+JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter
+python3 scripts/check_site.py
+```
 
-[Open an Issue](https://github.com/barryclark/jekyll-now/issues/new) and let's chat!
+The same checks run in GitHub Actions on pushes and pull requests. They verify rendered routes, local links, RSS, HTTPS canonical URLs, and exclusion of draft and development files.
 
-## Get my new themes
+## Site settings
 
-If you'd like me to let you know when I release a new theme, just [drop me your email for updates](http://eepurl.com/XUZpT). I'm currently working on a hacker portfolio site theme.
+- `_config.yml`: name, description, site URL, timezone, and build configuration.
+- `about.md`: biography and public profile links.
+- `style.scss`: styling.
+- `_layouts/`: shared page and post templates.
+- `images/`: images referenced from posts.
+- `feed.xml`: RSS feed; `sitemap.xml` is generated automatically.
 
-## Other forkable themes
+The existing 2014 article and its `/Hello-World` URL are preserved. The site has no analytics or third-party comment scripts enabled.
 
-You can use the [Quick Start](https://github.com/barryclark/jekyll-now#quick-start) workflow with other themes that are set up to be forked too! Here are some of  my favorites:
+The site URL uses HTTPS. GitHub's **Enforce HTTPS** setting is separate; it was disabled when this repository was inspected. It can be enabled under **Settings → Pages** when publishing the refresh.
 
-- [Hyde](https://github.com/poole/hyde) by MDO
-- [Lanyon](https://github.com/poole/lanyon) by MDO
-- [mojombo.github.io](https://github.com/mojombo/mojombo.github.io) by Tom Preston-Werner
-- [Left](https://github.com/holman/left) by Zach Holman
+## References
 
-## Credits
-
-- [Jekyll](https://github.com/jekyll/jekyll) - Thanks to it's creators, contributors and maintainers.
-- [SVG icons](https://github.com/neilorangepeel/Free-Social-Icons) - Thanks, Neil Orange Peel. They're beautiful. 
-- [Solarized Light Pygments](https://gist.github.com/edwardhotchkiss/2005058) - Thanks, Edward.
-- [Joel Glovier](http://joelglovier.com/writing/) - Great Jekyll articles. I used Joel's feed.xml in this repository.
-- [David Furnes](https://github.com/dfurnes), [Jon Uy](https://github.com/jonuy), [Luke Patton](https://github.com/lkpttn) - Thanks for the design/code reviews.
-
-## Get Hired as a Web Developer
-
-Check out my [free web development career newsletter](http://www.barryclark.co/newsletter) if you're interested in improving your chances of landing the job you want.
+- [GitHub Pages publishing sources](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [Adding pages and posts](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-content-to-your-github-pages-site-using-jekyll)

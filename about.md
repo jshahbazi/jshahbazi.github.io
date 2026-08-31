@@ -1,14 +1,12 @@
 ---
 layout: page
 title: About
+permalink: /about/
+description: John Shahbazian's personal blog.
 ---
 
-Some information about you!
+I'm John Shahbazian. This is my personal blog.
 
-### More Information
+You can find my public projects on [GitHub](https://github.com/jshahbazi) and my professional profile on [LinkedIn](https://www.linkedin.com/in/jshahbazi/).
 
-A place to include any other types of information that you'd like to include about yourself. 
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+To follow new posts, subscribe to the [RSS feed]({{ '/feed.xml' | relative_url }}).

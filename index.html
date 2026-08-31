@@ -1,18 +1,18 @@
 ---
 layout: default
+description: Notes on software and systems by John Shahbazian.
 ---
 
+<h1 class="section-title">Writing</h1>
 <div class="posts">
   {% for post in site.posts %}
-    <article class="post">    
-      
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.content | truncatewords:40}}
-      </div>
-      
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    <article class="post">
+      <p class="date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></p>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+      <p>{{ post.excerpt | strip_html | normalize_whitespace | truncatewords: 45 | escape }}</p>
+      <a href="{{ post.url | relative_url }}" class="read-more" aria-label="Read {{ post.title | escape }}">Read article <span aria-hidden="true">&rarr;</span></a>
     </article>
+  {% else %}
+    <p>No posts yet. New writing will appear here and in the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
   {% endfor %}
 </div>
