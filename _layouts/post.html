@@ -2,11 +2,24 @@
 layout: default
 ---
 
-<article class="post">
-  <header>
-    <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+<article class="post-shell container">
+  <header class="post-header">
+    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Writing</p>
     <h1>{{ page.title | escape }}</h1>
+    {% assign word_count = content | number_of_words %}
+    {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ reading_time }} min read</span>
+    </p>
   </header>
-  <div class="entry">{{ content }}</div>
-  <p class="back-link"><a href="{{ '/' | relative_url }}">&larr; All writing</a></p>
+
+  <div class="entry post-entry">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    <a class="text-link" href="{{ '/' | relative_url }}#writing"><span aria-hidden="true">←</span> All writing</a>
+  </footer>
 </article>

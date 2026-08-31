@@ -1,9 +1,14 @@
 name: John Shahbazian
 title: John Shahbazian
-description: Applied AI, software, and systems.
+role: Principal Product Engineer
+company: Coforma
+location: Tampa, Florida
+description: Principal engineer building applied AI products, cloud platforms, and production software.
 url: https://jshahbazi.github.io
 baseurl: ""
-avatar: https://avatars.githubusercontent.com/u/4032258?s=140
+avatar: https://avatars.githubusercontent.com/u/4032258?s=280
+github_url: https://github.com/jshahbazi
+linkedin_url: https://www.linkedin.com/in/jshahbazi/
 lang: en
 timezone: America/New_York
 
