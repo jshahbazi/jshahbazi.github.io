@@ -2,9 +2,12 @@
 layout: default
 ---
 
-<article class="page">
-
-  <h1>{{ page.title }}</h1>
+<article class="page-shell container">
+  <header class="page-header">
+    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>{{ page.eyebrow | default: 'Profile' }}</p>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.lede %}<p class="page-lede">{{ page.lede }}</p>{% endif %}
+  </header>
 
   <div class="entry">
     {{ content }}
