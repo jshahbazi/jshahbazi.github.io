@@ -287,3 +287,51 @@ footer {
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
+
+// Readability and keyboard navigation, retaining the original Jekyll Now layout.
+body { line-height: 1.65; }
+a { color: #25639b; }
+a:hover { color: #17446c; text-decoration: underline; }
+a:focus-visible { outline: 2px solid #25639b; outline-offset: 5px; }
+.container { padding-left: 24px; padding-right: 24px; }
+.site-name { line-height: 1.4; }
+.site-description { margin-top: 4px; }
+.introduction { padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid $lightGray; }
+.introduction .eyebrow { color: $gray; font-size: 14px; margin: 0 0 12px; }
+.introduction h1 { font-size: 38px; line-height: 1.2; letter-spacing: -0.7px; margin: 0 0 24px; max-width: 620px; }
+.intro-link { display: inline-block; margin-top: 8px; }
+.page .entry { line-height: 1.75; }
+.page .entry h2 { margin-top: 1.6em; }
+.page .entry li { margin-bottom: 12px; }
+.section-title { font-size: 18px; color: $gray; margin-bottom: 30px; }
+.posts > .post { padding-top: 24px; padding-bottom: 32px; }
+.posts > .post:first-child { padding-top: 0; }
+.post .date { font-style: normal; font-size: 14px; margin-bottom: 6px; }
+.post h1, .post h2 { margin-top: 0; line-height: 1.3; }
+.post h2 { font-size: 28px; }
+.post h2 a { color: $darkerGray; }
+.post .entry h2, .post .entry h3 { margin-top: 1.5em; }
+.post .read-more { text-transform: none; }
+.entry { overflow-wrap: break-word; }
+.entry a { text-decoration: underline; text-underline-offset: 3px; }
+.entry pre { overflow-x: auto; padding: 16px; background: #f3f5f7; }
+.entry pre code { color: #333; }
+.entry .highlight { background: #f3f5f7; }
+.entry .highlight pre { word-break: normal; word-wrap: normal; }
+.entry code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #444; }
+.entry table { display: block; overflow-x: auto; border-collapse: collapse; }
+.entry th, .entry td { border: 1px solid #ddd; padding: 8px 12px; }
+.entry th { font-weight: 600; }
+.back-link { margin-top: 40px; }
+.footer { font-size: 14px; }
+.footer > a { display: inline-block; margin: 0 12px; padding: 8px 0; }
+.footer p { color: $gray; }
+.skip-link { position: absolute; left: 16px; top: -100px; padding: 10px 16px; background: white; z-index: 10; }
+.skip-link:focus { top: 10px; }
+nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+@media (max-width: 640px) {
+  .wrapper-masthead { margin-bottom: 32px; }
+  .site-name { font-size: 26px; }
+  .introduction h1 { font-size: 30px; }
+  nav a { display: inline-block; padding: 8px 4px; }
+}

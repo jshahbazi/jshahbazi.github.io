@@ -3,15 +3,10 @@ layout: default
 ---
 
 <article class="post">
-  <h1>{{ page.title }}</h1>
-
-  <div class="entry">
-    {{ content }}
-  </div>
-
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
-
-  {% include disqus.html %}
+  <header>
+    <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+    <h1>{{ page.title | escape }}</h1>
+  </header>
+  <div class="entry">{{ content }}</div>
+  <p class="back-link"><a href="{{ '/' | relative_url }}">&larr; All writing</a></p>
 </article>

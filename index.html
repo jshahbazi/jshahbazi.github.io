@@ -1,18 +1,26 @@
 ---
 layout: default
+description: John Shahbazian is a Principal Product Engineer at Coforma. Notes on applied AI, cloud infrastructure, and building production software.
 ---
 
+<section class="introduction" aria-labelledby="intro-title">
+  <p class="eyebrow">Software engineering &amp; applied AI</p>
+  <h1 id="intro-title">Building AI products and the systems behind them.</h1>
+  <p>I'm John, a Principal Product Engineer at Coforma. My work spans language models, cloud infrastructure, and taking new products from an early idea to production.</p>
+  <p>Outside work, I'm a board member and volunteer with St. Francis Society Animal Rescue, helping with technology, cat transport, and the practical work of a volunteer-run rescue.</p>
+  <a class="intro-link" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">&rarr;</span></a>
+</section>
+
+<h2 class="section-title">Writing</h2>
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+      <p class="date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></p>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+      <p>{{ post.excerpt | strip_html | normalize_whitespace | truncatewords: 45 | escape }}</p>
+      <a href="{{ post.url | relative_url }}" class="read-more" aria-label="Read {{ post.title | escape }}">Read article <span aria-hidden="true">&rarr;</span></a>
     </article>
+  {% else %}
+    <p>No posts yet. New writing will appear here and in the <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>.</p>
   {% endfor %}
 </div>

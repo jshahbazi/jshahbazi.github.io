@@ -1,51 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ site.lang | default: 'en' }}">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-
-    {% include meta.html %}
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assign description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace %}
+    <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.name | escape }}</title>
+    <meta name="author" content="{{ site.name | escape }}">
+    <meta name="description" content="{{ description | escape }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta property="og:title" content="{{ page.title | default: site.name | escape }}">
+    <meta property="og:description" content="{{ description | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.name | escape }}">
+    <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+    <meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name | escape }}" href="{{ '/feed.xml' | absolute_url }}">
   </head>
-
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
-
+          <a href="{{ '/' | relative_url }}" class="site-avatar" aria-label="{{ site.name | escape }} home"><img src="{{ site.avatar }}" alt="" width="70" height="70"></a>
           <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <p class="site-name"><a href="{{ '/' | relative_url }}">{{ site.name }}</a></p>
             <p class="site-description">{{ site.description }}</p>
           </div>
-
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
+          <nav aria-label="Main navigation">
+            <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Blog</a>
+            <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
           </nav>
         </header>
       </div>
     </div>
-
-    <div id="main" role="main" class="container">
+    <main id="main" class="container" tabindex="-1">
       {{ content }}
-    </div>
-
+    </main>
     <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
+      <footer class="footer container">
+        <a href="https://github.com/jshahbazi">GitHub</a>
+        <a href="https://www.linkedin.com/in/jshahbazi/">LinkedIn</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS feed</a>
+        <p>{{ site.name }} · Built with Jekyll and GitHub Pages</p>
+      </footer>
     </div>
-
-    {% include analytics.html %}
   </body>
 </html>
