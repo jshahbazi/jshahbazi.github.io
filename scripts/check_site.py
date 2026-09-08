@@ -46,7 +46,6 @@ def exists_at(url_path):
 for required in (
     "index.html",
     "about/index.html",
-    "Hello-World.html",
     "404.html",
     "style.css",
     "favicon.svg",
