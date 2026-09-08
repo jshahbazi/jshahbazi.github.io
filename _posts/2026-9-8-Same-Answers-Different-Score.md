@@ -43,9 +43,9 @@ description: "Upgrading our eval grader moved recall 6.4 points on identical res
 }
 </style>
 
-We fine-tune a small model on customer documents to answer domain-specific questions. To evaluate how well it works, we run a few thousand questions through it and have a frontier model grade the answers. That score determines whether a model checkpoint is ready to ship.
+We fine-tune small models on customer documents to answer domain-specific questions. To evaluate how well it works, we run a few thousand questions through it and have a frontier model grade the answers. That score determines whether a model checkpoint is ready to ship.
 
-Last week I upgraded our external API calls from Sonnet 4.5 and Opus 4.5 to Sonnet 5 and Opus 5. The model we train remained completely unchanged (a frozen open-weights checkpoint). I expected the grader upgrade to be neutral for our benchmark scores.
+Last week I upgraded our external LLM calls from Sonnet 4.5 and Opus 4.5 to Sonnet 5 and Opus 5. The model we train remained completely unchanged, and I expected the grader upgrade to be neutral for our benchmark scores.
 
 <!--more-->
 
@@ -61,7 +61,7 @@ Both independent probe sets jumped by the exact same margin, and almost every fl
 
 For comparison, grading the same responses twice with the *same* model usually flips around 1.1% of verdicts - essentially our noise floor. Here, flips were 7–8x higher and entirely directional.
 
-There was also a potential confound: Sonnet 5 rejects explicit `temperature` parameters, so the re-grade ran with the provider's default temperature. Re-running the old model at that same default shifted scores by only +0.002 (six flips, well inside noise). The model upgrade itself accounted for +0.061 of the +0.064 jump.
+There was also a potential surprise: Sonnet 5 rejects explicit `temperature` parameters, so the re-grade ran with the provider's default temperature. Re-running the old model at that same default shifted scores by only +0.002 (six flips, well inside noise). The model upgrade itself accounted for +0.061 of the +0.064 jump.
 
 ## Whoever writes your eval questions is making a claim about your users
 
@@ -79,17 +79,17 @@ While digging into this, I ran another test on question formulation using the sa
 
 We had been reporting an eval recall around 0.89. The model definitely knows these facts - it scores 0.966 when prompted using the exact phrasing it saw during training. But when asked those same facts in seven-word prompts resembling real user queries, recall drops to 41%, and the model declines to answer roughly a third of the time.
 
-A metric like "overall recall" doesn't mean much without specifying how the questions were generated. That limitation was always there; testing multiple generation styles just brought it to the surface.
+A metric like "overall recall" doesn't mean much without specifying how the questions were generated. Testing multiple generation styles is important to surface any limitations.
 
 ## Treating graders like instruments
 
 The immediate fixes took under an hour, but the more important takeaway was how easily unversioned evaluation tooling can distort results.
 
-- **Pin the grader version in eval metadata.** If you version probe sets and stability baselines, the grader model belongs in that same configuration tuple so changes require an explicit re-baseline.
-- **Measure baseline grader variance.** Grading the same responses twice with the same model establishes an empirical noise floor. Without knowing our baseline ~1% flip rate, that 7.7% delta could easily have been mistaken for genuine model improvement.
-- **Avoid unpinned model defaults in configs.** Our default model string had been updated weeks earlier, and we only avoided accidental score shifts because deployment manifests happened to pin the old version explicitly.
-- **Smoke-test parameter compatibility.** Checking whether an API key works with a new model isn't enough; client wrappers need end-to-end tests with the exact payload kwargs used in production.
-- **Vary question generation styles.** If benchmark questions are generated with the same prompts and model families used for training data, the benchmark often ends up evaluating stylistic familiarity instead of actual comprehension.
+- **Pin the grader version in eval metadata.** If you version probe sets and stability baselines, the grader model belongs in that same configuration so changes require an explicit re-baseline.
+- **Measure baseline variance.** Grading the same responses twice with the same model establishes an noise floor. Without knowing our baseline ~1% flip rate, that 7.7% difference could easily have been mistaken for genuine model improvement.
+- **Avoid unpinned model defaults in configs.** Our default model string had been updated weeks earlier, and we only avoided accidental shifts because deployment manifests happened to pin the old version explicitly.
+- **Smoke-test parameter compatibility.** Checking whether an API key works with a new model isn't enough; client wrappers need end-to-end tests with the exact payload used in production.
+- **Vary question generation styles.** If benchmark questions are generated with the same prompts and model families used for training data, the benchmark often ends up evaluating what it has seen during training instead of actual comprehension.
 
 ## Final thoughts
 
