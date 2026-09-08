@@ -50,4 +50,4 @@ The hands-on work matters to me, too. Since 2025, I've helped with web and app d
 
 ## Find me online
 
-See my public projects on [GitHub]({{ site.github_url }}), my professional background on [LinkedIn]({{ site.linkedin_url }}), or new posts through the [RSS feed]({{ '/feed.xml' | relative_url }}).
+See my public projects on [GitHub]({{ site.github_profile_url }}), my professional background on [LinkedIn]({{ site.linkedin_profile_url }}), or new posts through the [RSS feed]({{ '/feed.xml' | relative_url }}).

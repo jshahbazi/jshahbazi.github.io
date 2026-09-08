@@ -33,8 +33,8 @@
           "name": {{ site.company | jsonify }}
         },
         "sameAs": [
-          {{ site.github_url | jsonify }},
-          {{ site.linkedin_url | jsonify }}
+          {{ site.github_profile_url | jsonify }},
+          {{ site.linkedin_profile_url | jsonify }}
         ],
         "knowsAbout": [
           "Applied AI",
@@ -62,7 +62,7 @@
           <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
           <a href="{{ '/' | relative_url }}#writing">Writing</a>
           <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
-          <a class="nav-external" href="{{ site.github_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="nav-external" href="{{ site.github_profile_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
 
@@ -77,8 +77,8 @@
         </div>
 
         <div class="footer-links">
-          <a href="{{ site.github_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
-          <a href="{{ site.linkedin_url }}" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="{{ site.github_profile_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+          <a href="{{ site.linkedin_profile_url }}" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
           <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
         </div>
 
