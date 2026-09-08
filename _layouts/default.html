@@ -7,10 +7,10 @@
     <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.name | escape }}</title>
     <meta name="author" content="{{ site.name | escape }}">
     <meta name="description" content="{{ description | escape }}">
-    <meta name="theme-color" content="#101716">
+    <meta name="theme-color" content="#121a19">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.name | escape }}" href="{{ '/feed.xml' | absolute_url }}">
 
     <meta property="og:title" content="{{ page.title | default: site.name | escape }}">

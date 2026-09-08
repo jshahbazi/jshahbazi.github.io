@@ -6,9 +6,11 @@ layout: default
   <header class="post-header">
     <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Writing</p>
     <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="post-lede">{{ page.description | escape }}</p>{% endif %}
     {% assign word_count = content | number_of_words %}
     {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
     <p class="post-meta">
+      <span>{{ site.name | escape }}</span>
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
       <span aria-hidden="true">·</span>
       <span>{{ reading_time }} min read</span>
