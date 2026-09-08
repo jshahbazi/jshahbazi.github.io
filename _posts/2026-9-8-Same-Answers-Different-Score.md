@@ -59,7 +59,7 @@ To verify, I re-graded a set of saved responses using the exact same response fi
 
 Both independent probe sets jumped by the exact same margin, and almost every flip went upward (`incorrect` to `partial`, `partial` to `correct`). Sonnet 5 simply graded the same text more leniently.
 
-For comparison, grading the same responses twice with the *same* model usually flips around 1.1% of verdicts—essentially our noise floor. Here, flips were 7–8x higher and entirely directional.
+For comparison, grading the same responses twice with the *same* model usually flips around 1.1% of verdicts - essentially our noise floor. Here, flips were 7–8x higher and entirely directional.
 
 There was also a potential confound: Sonnet 5 rejects explicit `temperature` parameters, so the re-grade ran with the provider's default temperature. Re-running the old model at that same default shifted scores by only +0.002 (six flips, well inside noise). The model upgrade itself accounted for +0.061 of the +0.064 jump.
 
@@ -77,7 +77,7 @@ While digging into this, I ran another test on question formulation using the sa
 
 <p class="caption">"How people actually type" = an LLM prompted to write the question a busy person would type into an internal assistant: terse, context omitted, sometimes a request rather than a question.</p>
 
-We had been reporting an eval recall around 0.89. The model definitely knows these facts—it scores 0.966 when prompted using the exact phrasing it saw during training. But when asked those same facts in seven-word prompts resembling real user queries, recall drops to 41%, and the model declines to answer roughly a third of the time.
+We had been reporting an eval recall around 0.89. The model definitely knows these facts - it scores 0.966 when prompted using the exact phrasing it saw during training. But when asked those same facts in seven-word prompts resembling real user queries, recall drops to 41%, and the model declines to answer roughly a third of the time.
 
 A metric like "overall recall" doesn't mean much without specifying how the questions were generated. That limitation was always there; testing multiple generation styles just brought it to the surface.
 
