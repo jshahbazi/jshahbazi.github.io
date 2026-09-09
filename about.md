@@ -12,7 +12,7 @@ My work tends to start with an ambiguous problem rather than a tidy specificatio
 <div class="profile-facts" aria-label="Profile summary">
   <div>
     <span>Experience</span>
-    <strong>15+ years</strong>
+    <strong>25+ years</strong>
   </div>
   <div>
     <span>Based in</span>
@@ -46,7 +46,7 @@ I hold bachelor's and master's degrees in Computer Science from the University o
 
 I'm a board member and volunteer with **St. Francis Society Animal Rescue** in Tampa Bay. My board work focuses on technology: helping the rescue choose and build systems for its website, adoption and foster workflows, and volunteer coordination within a nonprofit budget.
 
-The hands-on work matters to me, too. Since 2025, I've helped with web and app development, cat transport between shelters, fosters, and veterinary appointments, medical-supply deliveries, and occasional fostering. Sometimes the most useful thing I can do is write software; sometimes it's drive a cat to the vet.
+The hands-on work matters to me, too. Since 2025, I've helped with web and app development, cat transport between shelters, fosters, and veterinary appointments, medical-supply deliveries, and occasional fostering. Sometimes the most useful thing I can do is write software; sometimes it's driving a cat to the vet.
 
 ## Find me online
 
