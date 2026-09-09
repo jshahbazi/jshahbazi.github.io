@@ -102,6 +102,10 @@ h3 { font: 600 17px/1.3 var(--sans); }
 .about-preview-copy { font-size: 15px; }
 .about-preview-copy p + p { margin-top: 8px; color: var(--muted); }
 .text-link { display: inline-block; margin-top: 12px; font: 12px/1.5 var(--mono); }
+.continue-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font: 600 13px/1.4 var(--sans); text-decoration: none; }
+.continue-link:hover { text-decoration: underline; }
+.continue-arrow { transition: transform .15s ease; }
+.continue-link:hover .continue-arrow { transform: translateX(3px); }
 .entry { padding-top: 24px; }
 .entry p, .entry ul, .entry ol, .entry blockquote, .entry pre, .entry table { margin: 0 0 20px; }
 .entry h2 { margin: 32px 0 12px; }

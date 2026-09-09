@@ -10,6 +10,7 @@ description: John Shahbazian writes about applied AI, software systems, and the 
     <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Latest note · Applied AI &amp; software systems</p>
     <h1 id="intro-title"><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title | escape }}</a></h1>
     <p class="hero-lede">{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | escape }}</p>
+    <a class="continue-link" href="{{ featured_post.url | relative_url }}">Continue reading <span class="continue-arrow" aria-hidden="true">→</span></a>
     <div class="featured-meta">
       <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
       <span>John Shahbazian</span>
@@ -41,7 +42,7 @@ description: John Shahbazian writes about applied AI, software systems, and the 
   </div>
   <div class="about-preview-copy">
     <p>I’m a principal product engineer working across language models, product architecture, and cloud infrastructure.</p>
-    <p>I'm a problem solver and builder of cutting-edge, dependable software systems.</p>
+    <p>I'm a problem solver, builder of cutting-edge, dependable software systems, and driver of innovation.</p>
     <a class="text-link" href="{{ '/about/' | relative_url }}">More about my work <span aria-hidden="true">→</span></a>
   </div>
 </section>
