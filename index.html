@@ -6,7 +6,6 @@ description: John Shahbazian writes about applied AI, software systems, and the 
 {% assign visible_posts = site.posts | where_exp: "post", "post.unlisted != true" %}
 {% assign featured_post = visible_posts | first %}
 
-{% if featured_post %}
   <article id="writing" class="hero featured-post container" aria-labelledby="intro-title">
     <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Latest note · Applied AI &amp; software systems</p>
     <h1 id="intro-title"><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title | escape }}</a></h1>
@@ -14,7 +13,6 @@ description: John Shahbazian writes about applied AI, software systems, and the 
     <div class="featured-meta">
       <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
       <span>John Shahbazian</span>
-      <a href="{{ featured_post.url | relative_url }}">Read the essay <span aria-hidden="true">→</span></a>
     </div>
   </article>
 
@@ -35,19 +33,6 @@ description: John Shahbazian writes about applied AI, software systems, and the 
         {% endfor %}
       </div>
   </section>
-{% else %}
-  <section id="writing" class="hero writing-hero container" aria-labelledby="intro-title">
-    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Field notes · Applied AI &amp; software systems</p>
-    <h1 id="intro-title">Writing about the systems behind useful AI.</h1>
-    <p class="hero-lede">Notes on evaluation, product engineering, and the practical work of making complex software dependable.</p>
-  </section>
-  <section class="writing-section container" aria-labelledby="writing-title">
-    <header class="writing-header">
-      <p class="section-index">Latest writing</p>
-      <h2 id="writing-title">Notes from the work.</h2>
-    </header>
-  </section>
-{% endif %}
 
 <section class="about-preview container" aria-labelledby="about-title">
   <div>
