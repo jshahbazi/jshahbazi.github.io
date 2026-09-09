@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Same Answers, Different Score"
-description: "Upgrading our eval grader moved recall 6.4 points on identical responses, without touching the model we actually train."
+description: "Upgrading our eval grader model moved recall 6.4 points on identical responses.  Claude Sonnet/Opus 4.5 -> 5 led to significant gains without changing anything else, including the prompt."
 ---
 
 <style>
