@@ -11,7 +11,9 @@ description: John Shahbazian writes about applied AI, software systems, and the 
     <h1 id="intro-title"><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title | escape }}</a></h1>
     <p class="hero-lede">{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | escape }}</p>
     <a class="continue-link" href="{{ featured_post.url | relative_url }}">Continue reading <span class="continue-arrow" aria-hidden="true">→</span></a>
+    <div class="featured-meta">
       <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
+    </div>
   </article>
 
   <section class="writing-section container" aria-labelledby="writing-title">
