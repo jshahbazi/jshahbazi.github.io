@@ -9,11 +9,9 @@ description: John Shahbazian writes about applied AI, software systems, and the 
   <article id="writing" class="hero featured-post container" aria-labelledby="intro-title">
     <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Latest note · Applied AI &amp; software systems</p>
     <h1 id="intro-title"><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title | escape }}</a></h1>
+    <time class="featured-date" datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
     <p class="hero-lede">{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | escape }}</p>
     <a class="continue-link" href="{{ featured_post.url | relative_url }}">Continue reading <span class="continue-arrow" aria-hidden="true">→</span></a>
-    <div class="featured-meta">
-      <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
-    </div>
   </article>
 
   <section class="writing-section container" aria-labelledby="writing-title">
