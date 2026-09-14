@@ -7,19 +7,22 @@
     <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.name | escape }}</title>
     <meta name="author" content="{{ site.name | escape }}">
     <meta name="description" content="{{ description | escape }}">
-    <meta name="theme-color" content="#121a19">
+    <meta name="theme-color" content="#ffffff">
     <script>
       (function () {
         var theme;
         try { theme = localStorage.getItem('theme'); } catch (e) {}
         if (theme !== 'light' && theme !== 'dark') {
-          theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&display=swap">
     <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.name | escape }}" href="{{ '/feed.xml' | absolute_url }}">
 
@@ -59,24 +62,20 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="site-shell">
-      <header class="site-header container">
-        <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ site.name | escape }} home">
-          <img class="brand-photo" src="{{ '/images/profile.jpg' | relative_url }}" alt="" width="88" height="88">
-          <span class="brand-copy">
-            <span class="brand-name">{{ site.name }}</span>
-            <span class="brand-role">Notes on systems and applied AI</span>
-          </span>
-        </a>
-
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
-          <a href="{{ '/' | relative_url }}#writing">Writing</a>
-          <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
-          <a class="nav-external" href="{{ site.github_profile_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
-          <button class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+      <header class="site-header">
+        <div class="header-row">
+          <a class="brand btn" href="{{ '/' | relative_url }}" aria-label="{{ site.name | escape }} home">{{ site.name }}</a>
+          <button class="theme-toggle btn btn-icon" type="button" aria-label="Toggle light and dark theme">
             <svg class="icon-sun" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
             <svg class="icon-moon" aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
+        </div>
+
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="btn" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+          <a class="btn" href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+          <a class="btn nav-external" href="{{ site.github_profile_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="btn nav-external" href="{{ '/feed.xml' | relative_url }}">RSS</a>
         </nav>
       </header>
 
@@ -84,19 +83,19 @@
         {{ content }}
       </main>
 
-      <footer class="site-footer container">
-        <div class="footer-intro">
-          <p class="footer-kicker">{{ site.name }}</p>
-          <p>Building useful systems at the intersection of AI, product, and infrastructure.</p>
-        </div>
+      <footer class="site-footer">
+        <span class="footer-copy">&copy; {{ site.time | date: '%Y' }} {{ site.name }}. All rights reserved.</span>
 
         <div class="footer-links">
-          <a href="{{ site.github_profile_url }}" rel="me">GitHub <span aria-hidden="true">↗</span></a>
-          <a href="{{ site.linkedin_profile_url }}" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a href="{{ site.github_profile_url }}" rel="me">GitHub</a>
+          <a href="{{ site.linkedin_profile_url }}" rel="me">LinkedIn</a>
           <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
         </div>
 
-        <p class="footer-meta">&copy; {{ site.time | date: '%Y' }} {{ site.name }}</p>
+        <div class="footer-badges" aria-label="Site build">
+          <span class="badge badge-fill">Live</span>
+          <span class="badge">{{ site.time | date: '%Y.%m.%d' }}</span>
+        </div>
       </footer>
     </div>
 
@@ -106,7 +105,7 @@
         document.documentElement.setAttribute('data-theme', next);
         try { localStorage.setItem('theme', next); } catch (e) {}
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', next === 'dark' ? '#121a19' : '#f3f6f5');
+        if (meta) meta.setAttribute('content', next === 'dark' ? '#0a0a0a' : '#ffffff');
       });
     </script>
   </body>

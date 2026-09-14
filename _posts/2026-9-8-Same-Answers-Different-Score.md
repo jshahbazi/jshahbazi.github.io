@@ -1,14 +1,13 @@
 ---
 layout: post
 title: "Same Answers, Different Score"
+category: Evals
+tags: [LLM evals, Claude, fine-tuning]
 description: "Upgrading our eval grader model moved recall 6.4 points on identical responses.  Claude Sonnet/Opus 4.5 -> 5 led to significant gains without changing anything else, including the prompt."
 ---
 
 <style>
 .entry table {
-  display: block;
-  overflow-x: auto;
-  width: 100%;
   margin: 2rem 0;
   font-family: var(--mono);
   font-size: 0.82rem;

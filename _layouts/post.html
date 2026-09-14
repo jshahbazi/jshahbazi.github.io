@@ -2,26 +2,39 @@
 layout: default
 ---
 
-<article class="post-shell container">
+<article class="panel post-shell">
   <header class="post-header">
-    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Writing</p>
+    <div class="post-topbar">
+      <a class="btn btn-sm" href="{{ '/' | relative_url }}#writing"><span aria-hidden="true">←</span> All writing</a>
+    </div>
+    <span class="tag tag-fill">{{ page.category | default: 'Writing' }}</span>
     <h1>{{ page.title | escape }}</h1>
     {% assign word_count = content | number_of_words %}
     {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
     <p class="post-meta">
-      <span>{{ site.name | escape }}</span>
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-      <span aria-hidden="true">·</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      <span class="sep" aria-hidden="true">·</span>
       <span>{{ reading_time }} min read</span>
+      {% for tag in page.tags %}<span class="sep" aria-hidden="true">·</span><span>{{ tag | escape }}</span>{% endfor %}
     </p>
     {% if page.description %}<p class="post-lede">{{ page.description | escape }}</p>{% endif %}
   </header>
+
+  <hr class="rule">
 
   <div class="entry post-entry">
     {{ content }}
   </div>
 
   <footer class="post-footer">
-    <a class="text-link" href="{{ '/' | relative_url }}#writing"><span aria-hidden="true">←</span> All writing</a>
+    <div class="colophon">
+      <p class="label">Colophon</p>
+      <p class="colophon-title">{{ page.title | escape }}</p>
+      <dl>
+        <dt>Author</dt><dd>{{ site.name | escape }}</dd>
+        <dt>Published</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time></dd>
+        <dt>URL</dt><dd><a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a></dd>
+      </dl>
+    </div>
   </footer>
 </article>

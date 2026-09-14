@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Your post title"
+category: Writing
+tags: [topic one, topic two]
 description: "A short summary for search results and link previews."
 ---
 

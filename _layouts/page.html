@@ -2,12 +2,14 @@
 layout: default
 ---
 
-<article class="page-shell container">
+<article class="panel page-shell">
   <header class="page-header">
-    <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>{{ page.eyebrow | default: 'Profile' }}</p>
+    <span class="tag tag-fill">{{ page.eyebrow | default: 'Profile' }}</span>
     <h1>{{ page.title | escape }}</h1>
     {% if page.lede %}<p class="page-lede">{{ page.lede }}</p>{% endif %}
   </header>
+
+  <hr class="rule">
 
   <div class="entry">
     {{ content }}
