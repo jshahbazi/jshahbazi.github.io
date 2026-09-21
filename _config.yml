@@ -41,3 +41,4 @@ exclude:
   - vendor
   - scripts
   - AGENTS.md
+  - docs

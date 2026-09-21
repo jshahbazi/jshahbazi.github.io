@@ -64,6 +64,7 @@ for excluded in (
     "vendor",
     ".github",
     "AGENTS.md",
+    "docs",
 ):
     assert not (ROOT / excluded).exists(), f"Development content published: {excluded}"
 
