@@ -4,7 +4,7 @@ Personal blog (Jekyll, GitHub Pages) for jshahbazi.github.io. Posts live in `_po
 
 Detailed guidance lives in `docs/`:
 
-- [docs/writing-style.md](docs/writing-style.md) — voice and structure for posts. Read this before drafting or editing any post.
+- [docs/writing-style.md](docs/writing-style.md) — voice, vocabulary, and structure for posts. Read this before drafting or editing any post.
 - [docs/build.md](docs/build.md) — how to build, validate, and preview the site locally.
 
 ## Quick rules
@@ -14,3 +14,4 @@ Detailed guidance lives in `docs/`:
 - New drafts go in `_drafts/` until the author moves them to `_posts/`.
 - Do not edit anything under `_site/` or `vendor/`; both are build output.
 - Do not change numbers, tables, or quoted data in a post when restyling it. Preserve all figures exactly.
+- Write for an experienced software engineer who is not an ML or evals specialist. State results up front, use plain words over field jargon (see the Vocabulary table in the style guide), and keep titles and headings descriptive rather than catchy.
