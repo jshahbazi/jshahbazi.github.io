@@ -86,3 +86,62 @@ Title test: a reader should know what the post is about from the title alone, wi
 - Numbered lists for procedures and the variants being compared; bullets for caveats and summaries.
 - Inline code for field names, config keys, and API types (`Choice`, `min_judge_confidence`).
 - No emoji. No images unless they carry data a table cannot.
+
+## LinkedIn posts announcing a blog post
+
+Each published post gets a LinkedIn post that stands on its own and ends with a link to the full writeup. The LinkedIn post is written for a broader audience than the blog: an engineer or engineering leader who scrolls past it in a feed, has probably heard of the product in the news, and has not read anything else on this blog. It should be understandable without clicking through, and it should make the reader want the tables and caveats.
+
+The register is looser than the blog. Several blog rules are relaxed here on purpose; the rest still apply.
+
+### What changes from the blog register
+
+- Second person is expected. Address the reader directly ("your AI stack", "if you're optimizing for cost").
+- Rhetorical questions are allowed as paragraph openers when the next sentence answers them plainly ("What does Jev do? Simply put, it makes decisions."). Use at most two or three.
+- A stated opinion is allowed, and can be hedged ("I think that's the secret sauce."). One per post.
+- Mild colloquialisms are fine ("secret sauce", "playing it safe", "the headlines") as long as the sentence around them is concrete.
+- Name the alternatives the reader is likely using today (Sonnet, Luna, Opus, Sol), so they can place themselves in the story.
+
+### What stays the same
+
+- Every claim gets its number, and the numbers match the blog post exactly. Round for readability and flag the rounding ("~2,350", "about $43.60", "around 60%", "roughly 300ms").
+- Plain words over field jargon. The Vocabulary table applies.
+- No hype, no "excited to share", no exclamation marks, no bold, no emoji, no hashtags, no tagging people or companies.
+- No suspense. The headline result appears in the first paragraph.
+
+### Shape
+
+Roughly 350–450 words, 9–11 short paragraphs of one to four sentences each. No headings, bullets, or tables. In order:
+
+1. **Hook and headline result.** Open by placing the subject in something the reader already knows ("By now you've probably seen X in the headlines."), define it in one sentence, and give the two or three headline numbers in the same paragraph.
+2. **What it does, mechanically.** One paragraph. Input, output, and what comes back.
+3. **The obvious objection.** Name the familiar thing it resembles ("Astute readers may note that this sounds like a classifier."), say how it differs, and give your one opinion on why it works. Include a practical constraint if there is one (context limits, what makes it worse).
+4. **Why the reader should care.** Where in their own stack this applies, and what they are probably doing there today, naming the models.
+5. **Your position.** What you were doing before and what changed, in one or two sentences.
+6. **The concrete case.** "Here's what that looked like in practice." State the pipeline, the scale, and the baseline cost.
+7. **What you changed.** The mechanism and any threshold, in plain words.
+8. **The result.** Coverage, agreement, and cost, before and after.
+9. **The link.** A single line: "Full writeup, with the tables and caveats: <URL>". Nothing after it.
+
+### Reference
+
+The post for `_posts/2026-09-23-cutting-answer-grading-cost-with-a-first-pass-grader.md`:
+
+```
+By now you've probably seen TypeSafe's Jev in the headlines. Jev is a foundation model that makes structured decisions quickly and cheaply. Cheaply enough that we cut the cost of grading our model evals by 75%, and quickly enough that each decision comes back in roughly 300ms.
+
+What does Jev do? Simply put, it makes decisions. You pass in a structured input and the set of possible outputs, and it picks one and tells you how confident it is.
+
+Astute readers may note that this sounds like a classifier. And it is, with one difference: classifiers need training data, and Jev needs none. I think that's the secret sauce. They trained a massive, frontier-level model on everything, gave it a general understanding of the world, and pointed it at small, structured inputs. There are no huge context windows and no compaction. In fact, they warn that stuffing in too much information makes it worse, which forces you to be concise.
+
+What does that mean for you? Somewhere in your AI stack, you are making LLM calls that boil down to a simple decision. If you're optimizing for cost, you're probably sending those to a cheaper model like Sonnet or Luna. If you're playing it safe, you're sending them to Opus or Sol.
+
+I was sending mine to Opus. After some thorough testing, it turns out Jev can take over the vast majority of those calls, and in the rare case where it isn't confident, I hand the call back to Opus.
+
+Here's what that looked like in practice. Our pipeline trains a small model on a customer's documents and evaluates it a few times per run. In one scenario, each eval had Opus grade ~2,350 answers, at about $43.60 per eval.
+
+We put Jev in front of Opus as a first pass: Jev grades every answer and returns a probability for its verdict. If that clears 0.95, the verdict stands. Otherwise Opus grades it as before.
+
+The result: Jev now handles around 60% of source-document questions and around 90% of the rest. On the rows it handles, it agrees with Opus 99.1–99.8% of the time, which is about as often as Opus agrees with itself. Cost per eval went from about $43.60 to about $11.
+
+Full writeup, with the tables and caveats: https://jshahbazi.github.io/cutting-answer-grading-cost-with-a-first-pass-grader
+```

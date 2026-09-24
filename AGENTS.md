@@ -4,7 +4,7 @@ Personal blog (Jekyll, GitHub Pages) for jshahbazi.github.io. Posts live in `_po
 
 Detailed guidance lives in `docs/`:
 
-- [docs/writing-style.md](docs/writing-style.md) — voice, vocabulary, and structure for posts. Read this before drafting or editing any post.
+- [docs/writing-style.md](docs/writing-style.md) — voice, vocabulary, and structure for posts, plus the format for LinkedIn posts announcing them. Read this before drafting or editing any post.
 - [docs/build.md](docs/build.md) — how to build, validate, and preview the site locally.
 
 ## Quick rules
