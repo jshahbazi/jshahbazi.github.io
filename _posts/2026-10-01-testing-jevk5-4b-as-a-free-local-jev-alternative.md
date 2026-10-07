@@ -2,17 +2,17 @@
 layout: post
 category: Evals
 tags: [LLM evals, TypeSafe, Jev, open models, local inference, answer grading]
-description: "We compared six open decision models against a saved Jev run on 100 hand-graded answers. JevK5-4B agreed with the human labels 89% of the time against Jev's 90%, with a median response time of about 162 ms on a Mac. It is now our preferred open model for further testing; production grading has not changed."
+description: "We compared six open decision models against a Jev run on 100 hand-graded answers. JevK5-4B agreed with the human labels 89% of the time against Jev's 90%, with a median response time of about 162 ms on a Mac. It is now our preferred open model for further testing; production grading has not changed."
 title: "Testing JevK5-4B as a Free, Local Alternative to Jev for Answer Grading"
 ---
 
-Setup: at Brekko we turn a customer's documents into training data and train small models to answer questions about those documents. Evaluating a trained model means having a second model grade each of its answers. The grader receives a question, the known fact, the candidate answer, and a rubric, and has to tell a correct answer from one that changes a number, confuses two entities, or leaves out something the question asked for. For few days, we have been using TypeSafe's Jev for part of that job. Jev is a hosted service, and several open models now copy its interface. We wanted to know whether any of them could do our grading task on a machine we own.
+Setup: Evaluating a trained model means having a second model grade each of its answers. The grader receives a question, the known fact, the candidate answer, and a rubric, and has to tell a correct answer from one that changes a number, confuses two entities, or leaves out something the question asked for. For few days, we have been using TypeSafe's Jev for part of that job. Jev is a hosted service, and several open models now copy its interface. We wanted to know whether any of them could do our grading task on a machine we own.
 
 <!--more-->
 
 ## Short version
 
-We tested Jeff, Jeeves, Kev, Decider, and two sizes of JevK5 on the same 100 hand-graded cases we used to evaluate Jev. JevK5-4B agreed with the human accept/reject labels 89% of the time, against 90% for our saved Jev run, with a median local response time of about 162 ms on a Mac. None of the other open models came as close. Replaying the same cases through a packaged local server reproduced every verdict. We have picked JevK5-4B as our preferred open model for further validation and local experiments. Our production grading configuration has not changed.
+We tested Jeff, Jeeves, Kev, Decider, and two sizes of JevK5 on the same 100 hand-graded cases we used to evaluate Jev. JevK5-4B agreed with the human accept/reject labels 89% of the time, against 90% for our Jev run, with a median local response time of about 162 ms on a Mac. None of the other open models came as close. Replaying the same cases through a packaged local server reproduced every verdict. We have picked JevK5-4B as our preferred open model for further validation and local experiments. Our production grading configuration has not changed.
 
 ## Background
 
@@ -37,13 +37,13 @@ The test set is Human100: 100 document-grounded recall cases, frozen and previou
 
 The score is accept/reject agreement with the human label. A `correct` verdict counts as accept; `incorrect` and `partial` both count as reject. Each completed local study sent every request twice. The models are deterministic, so the second pass checks stability; it does not turn 100 cases into 200 independent examples.
 
-All response times are warm measurements on an Apple M5 Max with 128 GB of RAM, taken in separate sessions rather than a controlled throughput benchmark. The Kev timings are server-reported model time only; the other local rows include tokenization and reading the result back. The saved Jev run has no matched local measurement.
+All response times are warm measurements on an Apple M5 Max with 128 GB of RAM, taken in separate sessions rather than a controlled throughput benchmark. The Kev timings are server-reported model time only; the other local rows include tokenization and reading the result back. The Jev run has no matched local measurement.
 
 ## Results: agreement with human labels
 
 | Model / tested recipe | J0 human agreement | E1 human agreement | Median J0 / E1 response time |
 | --- | ---: | ---: | ---: |
-| Saved Jev | 90.0% | 88.5% | No matched local measurement |
+| Jev | 90.0% | 88.5% | No matched local measurement |
 | Jeff 0.8B, original release | 81.0% | 72.0% | 23 / 163 ms |
 | Jeeves 9B, without reasoning | 84.0% | 85.0% | 887 / 3,870 ms |
 | Kev-4B, earlier study | 82.0% | 74.0% | 212 / 796 ms* |
@@ -53,7 +53,7 @@ All response times are warm measurements on an Apple M5 Max with 128 GB of RAM, 
 
 \* Server-reported model time, excluding tokenization and readout.
 
-JevK5-4B is one point behind the saved Jev run on J0 and half a point behind on E1, and it is the fastest of the models that scored above 85%. "Q8" means the weights were shrunk to 8-bit numbers; "Metal" and "MPS" mean the Mac's GPU was used. The earlier Kev study used the same Human100 labels but a broader request that also asked secondary score questions, as did the saved Jev run.
+JevK5-4B is one point behind the Jev run on J0 and half a point behind on E1, and it is the fastest of the models that scored above 85%. "Q8" means the weights were shrunk to 8-bit numbers; "Metal" and "MPS" mean the Mac's GPU was used. The earlier Kev study used the same Human100 labels but a broader request that also asked secondary score questions, as did the Jev run.
 
 ## Results: agreement with a saved Opus run
 
@@ -105,7 +105,7 @@ JevK5-4B's [code](https://github.com/allebee/jevk5) and [released weights](https
 
 ## Confidence
 
-In the earlier Jev post, the useful part turned out to be the confidence score: using it to decide which cases a cheap grader could settle alone, and sending the rest to Opus. We repeated that check for JevK5-4B. In a development replay on Human100, a two-stage setup with JevK5-4B in front of Opus settled 57% of decisions locally and reached 93.5% agreement with the human labels, matching the saved Jev two-stage setup at similar coverage.
+In the earlier Jev post, the useful part turned out to be the confidence score: using it to decide which cases a cheap grader could settle alone, and sending the rest to Opus. We repeated that check for JevK5-4B. In a development replay on Human100, a two-stage setup with JevK5-4B in front of Opus settled 57% of decisions locally and reached 93.5% agreement with the human labels, matching the Jev two-stage setup at similar coverage.
 
 The same cutoff did not hold on Recall224. It failed both our disagreement screen and our screen for wrong answers being marked correct, and a stricter cutoff settled too few cases to be useful. So the bar we wrote down for replacing the production grader is still unmet, and the confidence score needs its own validation before it can be used to route cases.
 
@@ -128,7 +128,7 @@ The same cutoff did not hold on Recall224. It failed both our disagreement scree
 
 ## Summary
 
-- On Human100, JevK5-4B v0.3 Q8 agreed with the human labels 89.0% of the time on J0 and 88.0% on E1, against 90.0% and 88.5% for the saved Jev run.
+- On Human100, JevK5-4B v0.3 Q8 agreed with the human labels 89.0% of the time on J0 and 88.0% on E1, against 90.0% and 88.5% for the Jev run.
 - Median local response time was 162 ms on J0 and 998 ms on E1; the packaged MCP server measured 165 ms and 901 ms and reproduced all 200 verdicts.
 - The next-best open models were Decider v2 at 86.0% / 86.0% and Jeeves at 84.0% / 85.0%. Jeeves accepted 14 of 33 rejected answers per pass; JevK5-4B accepted eight.
 - Jeff was fastest at 23 ms but reached only 81% J0 agreement, and our training attempts peaked at 80%.
