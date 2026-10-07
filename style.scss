@@ -116,22 +116,22 @@ html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 /* Home: hero */
 .hero {
-  display: grid; gap: 28px;
-  padding: 56px 0 52px;
+  display: grid; gap: 24px;
+  padding: 36px 0 32px;
   border-bottom: 1px solid var(--border);
 }
-.hero-eyebrow { font: 400 13px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
-.hero h1 { font: 500 clamp(44px, 7vw, 84px)/0.98 var(--sans); letter-spacing: -.04em; color: var(--text); margin: 0; text-wrap: balance; }
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 40px; margin-top: 30px; }
+.hero-eyebrow { font: 400 13px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.hero h1 { font: 500 clamp(36px, 5.5vw, 64px)/1.02 var(--sans); letter-spacing: -.035em; color: var(--text); margin: 0; text-wrap: balance; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 40px; margin-top: 22px; }
 .hero-spec { display: grid; gap: 2px; font: 400 11px/1.5 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--faint); text-align: right; }
-.hero-aside { display: grid; gap: 22px; align-content: start; padding: 26px; background: var(--surface); border-radius: var(--radius); }
+.hero-aside { display: grid; gap: 16px; align-content: start; padding: 22px; background: var(--surface); border-radius: var(--radius); }
 .hero-aside .label { margin-bottom: 8px; }
 .hero-aside p { color: var(--text-soft); font-size: 15px; }
 .side-photo { display: block; width: 56px; height: 56px; object-fit: cover; border-radius: 50%; }
 .hero-aside .aside-link { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; }
 
 /* Home: writing grid */
-.index-section { padding: 48px 0 0; }
+.index-section { padding: 36px 0 0; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
 .section-head h2 { font: 500 clamp(30px, 4vw, 44px)/1.05 var(--sans); letter-spacing: -.035em; margin: 0; }
 .section-head a { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 500; }
@@ -226,7 +226,7 @@ h1 a { color: var(--text); }
   .site-header { flex-wrap: wrap; }
   .site-nav { gap: 4px 16px; font-size: 14px; }
   .site-nav .nav-external { display: none; }
-  .hero { padding: 40px 0 36px; }
+  .hero { padding: 28px 0 28px; }
   .hero-actions { gap: 16px; }
   .hero-spec { text-align: left; }
   .panel { padding: 18px; }
