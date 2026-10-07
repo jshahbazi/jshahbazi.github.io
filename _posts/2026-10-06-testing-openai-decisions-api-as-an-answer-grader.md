@@ -3,7 +3,7 @@ layout: post
 category: Evals
 tags: [LLM evals, OpenAI, Decisions API, TypeSafe, Jev, JevK5, answer grading, cost]
 description: "We ran OpenAI's new Decisions API through the same 100 hand-graded answers we used to test Jev and its open-source clones. It agreed with the human labels 83% of the time, against 90% Jev and 89% for JevK5-4B. Median response time was about 135 ms over the network and all 400 judgments cost about six cents. Most of the gap comes from rejecting answers a person had accepted."
-title: "Testing OpenAI's Decisions API as an Answer Grader Against Jev and JevK5-4B"
+title: "Testing OpenAI's Decisions API Against Jev and JevK5-4B"
 ---
 
 ![Human100 results for nine graders, with the OpenAI Decisions row outlined in red. OpenAI Decisions agreed with the human labels 83% / 82% on J0 / E1 with 16 / 18 and 14 / 22 false accepts / rejects over both passes and a median response time of 135 / 136 ms. Jev scored 90% / 88.5%, JevK5-4B 89% / 88%, Decider v2 86% / 86%, Jeeves 84% / 85%, JevK5-9B 82% / 88%, Jeff 81% / 72%, Clef-flash 80% / 79%, Strands Decider 73% / 68%.](/images/openai-decisions-human100.png)
