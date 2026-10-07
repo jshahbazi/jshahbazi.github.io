@@ -3,7 +3,7 @@ layout: page
 title: About
 eyebrow: About
 permalink: /about/
-lede: I work where applied AI, product engineering, and cloud systems meet—and where the result still has to be useful, secure, and maintainable.
+lede: I work on applied AI, product engineering, and cloud systems.
 description: John Shahbazian is a Principal Product Engineer at Coforma working across applied AI, cloud infrastructure, and product development.
 ---
 
