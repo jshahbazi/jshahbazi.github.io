@@ -5,39 +5,55 @@ description: John Shahbazian writes about applied AI, software systems, and the 
 
 {% assign visible_posts = site.posts | where_exp: "post", "post.unlisted != true" %}
 
-<div class="index-grid">
-  <aside class="index-side">
-    <section class="panel" aria-labelledby="intro-title">
-      <p class="label">Writing</p>
-      <h1 id="intro-title">Notes on systems and applied AI</h1>
-      <p>Working notes from building AI products and the infrastructure that runs them.</p>
-    </section>
+<section class="hero" aria-labelledby="intro-title">
+  <div>
+    <p class="hero-eyebrow">Writing // Systems and applied AI</p>
+    <h1 id="intro-title">Notes from building AI products</h1>
+    <div class="hero-actions">
+      <a class="btn" href="#writing">Read the posts <span aria-hidden="true">→</span></a>
+      <div class="hero-spec" aria-hidden="true">
+        <span>{{ visible_posts | size }} posts</span>
+        <span>Updated {{ site.time | date: '%Y-%m-%d' }}</span>
+      </div>
+    </div>
+  </div>
 
-    <section class="panel" aria-labelledby="about-title">
+  <aside class="hero-aside" aria-labelledby="about-title">
+    <img class="side-photo" src="{{ '/images/profile.jpg' | relative_url }}" alt="" width="56" height="56">
+    <div>
       <p class="label" id="about-title">About</p>
-      <img class="side-photo" src="{{ '/images/profile.jpg' | relative_url }}" alt="" width="72" height="72">
       <p>I’m a principal product engineer working with language models, product architecture, and cloud infrastructure.</p>
-      <p>Outside of work I'm very passionate about helping animals and advocating for their well-being.</p>
-      <a class="btn btn-sm" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">→</span></a>
-    </section>
+    </div>
+    <p>Outside of work I'm very passionate about helping animals and advocating for their well-being.</p>
+    <a class="aside-link" href="{{ '/about/' | relative_url }}">More about me <span aria-hidden="true">↗</span></a>
   </aside>
+</section>
 
-  <section class="post-cards" id="writing" aria-label="All writing">
+<section class="index-section" id="writing" aria-labelledby="writing-title">
+  <div class="section-head">
+    <h2 id="writing-title">Writing</h2>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS feed <span aria-hidden="true">↗</span></a>
+  </div>
+
+  {% if visible_posts.size > 0 %}
+  <div class="post-cards">
     {% for post in visible_posts %}
-      <article class="panel card">
+      <article class="card">
         <div class="card-meta">
-          <span class="tag tag-fill">{{ post.category | default: 'Writing' }}</span>
+          <span class="tag">{{ post.category | default: 'Writing' }}</span>
+          <span class="sep" aria-hidden="true">·</span>
           <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
         </div>
         <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
         <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncatewords: 40 | escape }}</p>
         <span class="card-link">Read <span aria-hidden="true">→</span></span>
       </article>
-    {% else %}
-      <div class="panel empty-state">
-        <p class="label">Nothing yet</p>
-        <p>New posts will show up here.</p>
-      </div>
     {% endfor %}
-  </section>
-</div>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p class="label">Nothing yet</p>
+    <p>New posts will show up here.</p>
+  </div>
+  {% endif %}
+</section>

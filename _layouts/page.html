@@ -2,9 +2,9 @@
 layout: default
 ---
 
-<article class="panel page-shell">
+<article class="page-shell">
   <header class="page-header">
-    <span class="tag tag-fill">{{ page.eyebrow | default: 'Profile' }}</span>
+    <span class="tag">{{ page.eyebrow | default: 'Profile' }}</span>
     <h1>{{ page.title | escape }}</h1>
     {% if page.lede %}<p class="page-lede">{{ page.lede }}</p>{% endif %}
   </header>

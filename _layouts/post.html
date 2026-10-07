@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<article class="panel post-shell">
+<article class="post-shell">
   <header class="post-header">
     <div class="post-topbar">
-      <a class="btn btn-sm" href="{{ '/' | relative_url }}#writing"><span aria-hidden="true">←</span> All writing</a>
+      <a href="{{ '/' | relative_url }}#writing"><span aria-hidden="true">←</span> All writing</a>
     </div>
-    <span class="tag tag-fill">{{ page.category | default: 'Writing' }}</span>
+    <span class="tag">{{ page.category | default: 'Writing' }}</span>
     <h1>{{ page.title | escape }}</h1>
     {% assign word_count = content | number_of_words %}
     {% assign reading_time = word_count | divided_by: 200 | plus: 1 %}
