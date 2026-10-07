@@ -7,7 +7,7 @@ lede: I work on applied AI, product engineering, and cloud systems.
 description: John Shahbazian is a Principal Product Engineer at Coforma working across applied AI, cloud infrastructure, and product development.
 ---
 
-My work tends to start with an ambiguous problem rather than a tidy specification. I help shape the technical approach, build the product, and carry it far enough into production that reliability, security, and operations are part of the design—not an afterthought.
+My work tends to start with an ambiguous problem rather than a tidy specification. I help shape the technical approach, build the product, and carry it far enough into production that reliability, security, and operations are part of the design — not an afterthought.
 
 <div class="profile-facts" aria-label="Profile summary">
   <div>
