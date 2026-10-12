@@ -2,12 +2,15 @@
 
 Target register: an engineer writing up results for other engineers. The reader is assumed to be skeptical, technically literate, and short on time. They are an experienced software engineer, not necessarily an ML or evals specialist, so field jargon should be replaced with plain words or explained once. Think of a well-received Hacker News post or an internal engineering writeup, not a newsletter and not a paper.
 
-Reference post: `_drafts/2026-09-20-evaluating-jev-as-an-eval-grader.md`. The earlier version at `_posts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the same material in the register we are moving away from; diff the two to see the intended changes.
+Reference post: `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md`. It uses the looser narrative shape described under Structure below, and is the register to aim for. `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` is the stricter report shape; both are acceptable, but do not write every post in the report shape. The earlier `_posts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
 
 ## Voice
 
-- First person, past tense for what was done, present tense for what is true.
+- First person. "I" for the author's judgments, guesses, and decisions; "we" for work the team did (ran the harness, kept the datasets). Past tense for what was done, present tense for what is true.
 - State claims directly. Do not build suspense or withhold results for a reveal.
+- No framing hooks. Do not open with what the post "started as" or "turned into", what it "reminded" you of, or what lesson it teaches. Open with what the thing is and what was tested.
+- No kicker endings. Do not close on an aphorism, a callback, a turn of phrase, or "the thing I will carry forward". End with what you will do next, or a flat statement of the general point, and stop.
+- If a sentence would work as the first or last line of a LinkedIn post, cut it.
 - Prefer the plain word. "Cut" over "slash", "worse" over "took a hit", "cost" over "bill".
 - No rhetorical questions, no one-line paragraphs used as beats ("Then the catch."), no puns or metaphors in headings.
 - No hedging filler ("I think", "it seems like") unless the uncertainty is real, in which case say what is uncertain and why.
@@ -41,17 +44,37 @@ API types, field names, and config keys are the exception: keep them verbatim in
 
 ## Structure
 
+Two shapes are in use. Prefer the narrative shape unless the post is mostly tables.
+
+### Narrative shape (preferred)
+
+1. **Opening paragraph**: what the thing is, in mechanical terms, and what was tested. One or two sentences placing it next to things the reader may already know from earlier posts. End the paragraph with the result in one plain sentence ("It did very well at one and not the other."), not a tease.
+2. **`<!--more-->`**.
+3. **Short answer** paragraph: the headline numbers, both sides of each comparison, and what you are going to do about it. Readers should be able to stop here.
+4. **A method note** (one paragraph): what was reused, what was new, what was not changed after seeing scores, whether it was audited. Put it before the results so the reader knows how to weigh them.
+5. **One section per test or topic**, in the order the work happened. Each section: what the test is, the table, what the numbers mean, and the caveats that apply to that result, in the same section. Do not defer caveats to the end; put them next to the number they qualify.
+6. **A "why" section** if you have a hypothesis: say it is a hypothesis, give a concrete toy example, and say what would be needed to test it.
+7. **Where this leaves things**: what you will use for what, and what would change your mind. One or two paragraphs. No bullet recap, no closing line.
+
+### Report shape
+
 1. **Setup** (1–2 paragraphs): what the system is, what was being measured, and why it matters, with a concrete scale anchor (cost, latency, count).
 2. **`<!--more-->`** after the setup.
-3. **Short version**: the result in 2–4 sentences, including the headline numbers. Readers should be able to stop here.
+3. **Short version**: the result in 2–4 sentences, including the headline numbers.
 4. **Background** as needed: what the thing under test actually is, in mechanical terms. No marketing language.
 5. **Method**: how many cases, how many passes, what setups were compared, and what was measured, in plain words. Any bar you set in advance is stated here, before the results.
 6. **Results**: tables first, one-sentence interpretation after each. Keep tables small and label units.
 7. **Analysis / failure modes**: what the results mean, with a concrete example (quoted text, a specific case) where possible.
 8. **Caveats**: bulleted. Be specific about what is and is not validated, sample sizes, circularity, coverage gaps.
-9. **Summary**: bullets restating each finding with its number. Optional single closing sentence with the takeaway.
+9. **Summary**: bullets restating each finding with its number.
 
-Section headings are plain labels ("Method", "Results: grading accuracy", "Caveats"), not phrases or teasers. A question is acceptable when it is the literal question the section answers ("Is the confidence score any good?"), not when it is a hook.
+### Headings
+
+Section headings are plain, descriptive labels. In the narrative shape they name the subject ("The tool-picking test", "Speed and money", "Where this leaves things"); in the report shape they name the section type ("Method", "Results: grading accuracy", "Caveats"). A question is acceptable when it is the literal question the section answers ("Is the confidence score any good?"), not when it is a hook.
+
+### Labels in prose
+
+Internal dataset codes (`J0`, `E1`, arm names) belong in the harness, not the post. Write "without the source text" and "with the source text", or whatever the plain description is, and use it consistently in tables and prose. Keep the code only if a linked artifact uses it and the reader needs to match them up.
 
 ## Numbers and evidence
 
