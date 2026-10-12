@@ -74,6 +74,6 @@ One thing that did not pan out was using Snap's probabilities as a filter. We ha
 
 ## Where this leaves things
 
-For the next round of agent tool-selection work, Snap goes in as the hosted model to beat. For grading answers against documents, I am starting with JevK5-4B MLX, same as before, and nothing here moved me off it. Fresh cases, more domains, and an honest accounting of what each kind of error costs in our pipeline will decide what happens after that.
+For the next round of agent tool-selection work, Snap goes in as the hosted model to beat. For grading answers against documents, I am going with JevK5-4B MLX, same as before, and nothing here moved me off it. What would change that is a test on new cases from more than one corpus, with the cost of each kind of error in our pipeline written down first.
 
 The general point is that a shared interface does not make the tasks behind it interchangeable. Snap, JevK5, and the OpenAI endpoint all take the same kind of request and return the same kind of answer, and the ordering between them still flipped from one job to the other. A result on one of these tasks says little about the other; each needs its own test.
