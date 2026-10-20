@@ -183,5 +183,5 @@ We put Jev in front of Opus as a first pass: Jev grades every answer and returns
 
 The result: Jev now handles around 60% of source-document questions and around 90% of the rest. On the rows it handles, it agrees with Opus 99.1–99.8% of the time, which is about as often as Opus agrees with itself. Cost per eval went from about $43.60 to about $11.
 
-Full writeup, with the tables and caveats: https://jshahbazi.github.io/cutting-answer-grading-cost-with-a-first-pass-grader
+Full writeup, with the tables and caveats: https://johnshahbazian.com/cutting-answer-grading-cost-with-a-first-pass-grader
 ```

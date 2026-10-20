@@ -10,4 +10,4 @@ The caveats are real. 100 cases is enough to see which way the errors lean but n
 
 Where this leaves us: Jev hosted, JevK5-4B locally, production untouched. The speed and price are hard to argue with. Long-input requests came back in about one-seventh of JevK5-4B's local time, and the ~2,350 answers that cost about $43.60 to grade with Opus would run about $0.65 here. If a later version brings the false rejects down, it goes back on the list.
 
-Full writeup, with the tables and caveats: https://jshahbazi.github.io/testing-openai-decisions-api-as-an-answer-grader
+Full writeup, with the tables and caveats: https://johnshahbazian.com/testing-openai-decisions-api-as-an-answer-grader

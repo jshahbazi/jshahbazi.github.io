@@ -8,4 +8,4 @@ My guess at why is that the two jobs ask for different things. Picking a tool fr
 
 It is cheap enough that the question barely matters for experimentation: both tests together came to about 3.6 cents at $0.05 per million input tokens. Snap goes in as the hosted candidate for our next tool-selection work. For grading, I am staying with JevK5-4B.
 
-Full writeup, with the tables and caveats: https://jshahbazi.github.io/testing-subq-snap-on-two-jobs
+Full writeup, with the tables and caveats: https://johnshahbazian.com/testing-subq-snap-on-two-jobs

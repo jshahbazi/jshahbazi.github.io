@@ -1,6 +1,6 @@
 # John Shahbazian's blog
 
-A Markdown blog hosted by GitHub Pages at [jshahbazi.github.io](https://jshahbazi.github.io). Based on [Jekyll Now](https://github.com/barryclark/jekyll-now), with its MIT license retained.
+A Markdown blog hosted by GitHub Pages at [johnshahbazian.com](https://johnshahbazian.com). Based on [Jekyll Now](https://github.com/barryclark/jekyll-now), with its MIT license retained.
 
 ## Hosting
 

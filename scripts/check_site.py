@@ -5,7 +5,7 @@ from urllib.parse import unquote, urlparse
 import xml.etree.ElementTree as ET
 
 ROOT = Path("_site")
-ORIGIN = "https://jshahbazi.github.io"
+ORIGIN = "https://johnshahbazian.com"
 
 
 class Page(HTMLParser):
