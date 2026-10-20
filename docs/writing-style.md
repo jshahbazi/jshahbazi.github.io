@@ -1,22 +1,24 @@
 # Writing style guide
 
-Target register: an engineer writing up results for other engineers. The reader is assumed to be skeptical, technically literate, and short on time. They are an experienced software engineer, not necessarily an ML or evals specialist, so field jargon should be replaced with plain words or explained once. Think of a well-received Hacker News post or an internal engineering writeup, not a newsletter and not a paper.
+Target register: an engineering-blog explainer, in the manner of the Cloudflare blog (for example [Announcing Claude Managed Agents on Cloudflare](https://blog.cloudflare.com/claude-managed-agents/)). The writer is a team explaining what it did and why, patiently and in order, to a reader who is skeptical, technically literate, and short on time. The reader is an experienced software engineer, not necessarily an ML or evals specialist, so field jargon is replaced with plain words or explained once. Concepts are built up before they are used; results are stated, not revealed. Not a newsletter, not a paper, and not a personal essay.
 
-Reference post: `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md`. It uses the looser narrative shape described under Structure below, and is the register to aim for. `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` is the stricter report shape; both are acceptable, but do not write every post in the report shape. The earlier `_posts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
+Reference post: `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-say-i-dont-have-that.md`. It uses the explainer shape described under Structure below, and is the register to aim for. `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md` (narrative shape) and `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` (report shape) are earlier registers that are still acceptable for comparison-heavy posts, but new posts should default to the explainer shape. `_drafts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
 
 ## Voice
 
-- First person. "I" for the author's judgments, guesses, and decisions; "we" for work the team did (ran the harness, kept the datasets). Past tense for what was done, present tense for what is true.
+- "We" by default. The team ran the experiment, built the field, shipped the fix. Use "I" only for a judgment or decision that is genuinely one person's and where that matters to the reader. Past tense for what was done, present tense for what is true.
+- Declarative and patient. Each paragraph carries one idea, in two to four sentences. Explain the thing before giving the number about it.
+- Orient, then deliver. Open a section by saying what it covers or what the reader needs to know, then give the result. Signposting is encouraged: one paragraph after the summary saying what the post will cover, and sentences like "A few details are worth calling out" before a list.
 - State claims directly. Do not build suspense or withhold results for a reveal.
 - No framing hooks. Do not open with what the post "started as" or "turned into", what it "reminded" you of, or what lesson it teaches. Open with what the thing is and what was tested.
 - No kicker endings. Do not close on an aphorism, a callback, a turn of phrase, or "the thing I will carry forward". End with what you will do next, or a flat statement of the general point, and stop.
+- No performed casualness. No sentence fragments used as paragraph openers ("The numbers.", "Some context.", "One method problem."), no one-line paragraphs used as beats ("Then the catch."), no self-deprecating asides ("this embarrassed me a little"), no "here's the whole thing in one paragraph", no "in case you're building something similar". Say the thing.
 - If a sentence would work as the first or last line of a LinkedIn post, cut it.
 - Prefer the plain word. "Cut" over "slash", "worse" over "took a hit", "cost" over "bill".
-- No rhetorical questions, no one-line paragraphs used as beats ("Then the catch."), no puns or metaphors in headings.
+- No rhetorical questions, no puns or metaphors in headings or prose ("prime suspect", "neuron surgery", "closed that door").
 - No hedging filler ("I think", "it seems like") unless the uncertainty is real, in which case say what is uncertain and why.
-- Understated rather than emphatic. Let the numbers carry the weight. Avoid bold for emphasis inside prose and inside tables.
-- It is fine to say "So: no." or "That is circular." Dry is good; clever is not.
-- Admit mistakes and near-misses plainly, as method notes, not as confessions.
+- Understated rather than emphatic. Let the numbers carry the weight. No bold for emphasis inside prose or tables; bold is reserved for lead-in labels in bullet lists (see Formatting).
+- Admit mistakes and near-misses plainly, as method notes, not as confessions. "One sequencing mistake is worth recording." is the right register.
 
 ## Vocabulary
 
@@ -44,9 +46,23 @@ API types, field names, and config keys are the exception: keep them verbatim in
 
 ## Structure
 
-Two shapes are in use. Prefer the narrative shape unless the post is mostly tables.
+Three shapes are in use. Default to the explainer shape. Use the narrative or report shape only for posts that are mostly a comparison table of several models or tools.
 
-### Narrative shape (preferred)
+### Explainer shape (preferred)
+
+1. **Opening paragraph**: what the external thing is (a paper, a product, a technique) in one or two mechanical sentences, then the question we asked about our own system, then the answer in one plain sentence. No tease.
+2. **`<!--more-->`**.
+3. **Orientation paragraph** for readers new to the blog: what our system is, in three or four sentences. Skip only if the post needs none.
+4. **Results paragraph**: every headline number, both sides of each comparison, and what we did about it. Readers should be able to stop here.
+5. **Signpost paragraph**: one sentence or two saying what the post covers, in order ("In this post we'll go through X, walk through Y, and then cover Z.").
+6. **Background sections**, one per concept the reader needs before the results. Each builds one idea: what the paper claims and what we took from it; how the relevant part of our system works; the distinction the experiment is meant to resolve. Keep each short.
+7. **Method section**: what was fixed in advance, what was reused, what was audited, what it cost. A bulleted list with bold lead-ins works well here.
+8. **Results section(s)**: in the order the work happened. Each gives the number, what it means, and the caveats that apply, in the same section. Do not defer caveats to the end.
+9. **What we built and why** (if anything shipped): design choices as a bulleted list with bold lead-ins, then the tuning or validation table, then what was tried and rejected.
+10. **Shipping and review**: what was merged, what review caught, how the fix was measured, and any sequencing mistake.
+11. **What's next**: concrete next steps and the condition that would change the plan. One or two paragraphs. No bullet recap, no closing line, no lessons section.
+
+### Narrative shape
 
 1. **Opening paragraph**: what the thing is, in mechanical terms, and what was tested. One or two sentences placing it next to things the reader may already know from earlier posts. End the paragraph with the result in one plain sentence ("It did very well at one and not the other."), not a tease.
 2. **`<!--more-->`**.
@@ -70,7 +86,7 @@ Two shapes are in use. Prefer the narrative shape unless the post is mostly tabl
 
 ### Headings
 
-Section headings are plain, descriptive labels. In the narrative shape they name the subject ("The tool-picking test", "Speed and money", "Where this leaves things"); in the report shape they name the section type ("Method", "Results: grading accuracy", "Caveats"). A question is acceptable when it is the literal question the section answers ("Is the confidence score any good?"), not when it is a hook.
+Section headings are plain, descriptive labels. In the explainer shape they are topical noun phrases that name what the section explains ("An overview of the essay", "How our model learns to decline", "A blind spot in the scorer", "Introducing decline_class", "Keeping the rule honest", "Shipping it", "What's next"). In the narrative shape they name the subject ("The tool-picking test"); in the report shape they name the section type ("Method", "Caveats"). A question is acceptable when it is the literal question the section answers ("Absent or held back?"), not when it is a hook. No sentence-style headings that perform a voice ("Setting it up so I couldn't fool myself").
 
 ### Labels in prose
 
@@ -106,7 +122,8 @@ Title test: a reader should know what the post is about from the title alone, wi
 ## Formatting
 
 - Markdown tables for any comparison of more than two numbers.
-- Numbered lists for procedures and the variants being compared; bullets for caveats and summaries.
+- Numbered lists for procedures and the variants being compared; bullets for caveats, design choices, and method details.
+- Bullets may open with a short bold lead-in label followed by a period ("**Noise floor.** Regenerating the reference moved one verdict out of 376."). Use this for lists where each item is a distinct named point: method details, design choices, reasons for a decision, failure types. Do not use it for lists of rejected variants or plain caveats, and never bold inside running prose.
 - Inline code for field names, config keys, and API types (`Choice`, `min_judge_confidence`).
 - No emoji. No images unless they carry data a table cannot.
 

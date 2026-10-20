@@ -15,3 +15,4 @@ Detailed guidance lives in `docs/`:
 - Do not edit anything under `_site/` or `vendor/`; both are build output.
 - Do not change numbers, tables, or quoted data in a post when restyling it. Preserve all figures exactly.
 - Write for an experienced software engineer who is not an ML or evals specialist. State results up front, use plain words over field jargon (see the Vocabulary table in the style guide), and keep titles and headings descriptive rather than catchy.
+- Default voice is an engineering-blog explainer in the manner of the Cloudflare blog: "we", declarative, concepts explained before results, no fragments or asides performing casualness. Use the explainer shape from the style guide unless the post is mostly a comparison table.
