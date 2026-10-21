@@ -2,7 +2,7 @@
 layout: post
 category: Evals
 tags: [agents, Jev, Mercury, TypeSafe, decision models, conflict detection]
-description: "I asked Inception's Mercury Decide and TypeSafe's Jev 1.13 the same question about 19 pairs of coding-agent assignments: if both agents carry out their work at the same time, could one overwrite or invalidate the other's changes? Mercury matched our expected answer on all 38 presentations; Jev matched 30. On the 20 presentations where both models were called fresh, it was 20 to 15."
+description: "I asked Inception's Mercury Decide and TypeSafe's Jev 1.13 the same question about 19 pairs of coding-agent assignments: if both agents carry out their work at the same time, could one overwrite or invalidate the other's changes? Mercury matched my expected answer on all 38 presentations; Jev matched 30. On the 20 presentations where both models were called fresh, it was 20 to 15."
 title: "Testing Mercury Decide and Jev on Whether Two Agents' Changes Will Collide"
 ---
 
