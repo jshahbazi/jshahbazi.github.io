@@ -2,15 +2,15 @@
 
 Target register: an engineering-blog explainer, in the manner of the Cloudflare blog (for example [Announcing Claude Managed Agents on Cloudflare](https://blog.cloudflare.com/claude-managed-agents/)). The writer is a team explaining what it did and why, patiently and in order, to a reader who is skeptical, technically literate, and short on time. The reader is an experienced software engineer, not necessarily an ML or evals specialist, so field jargon is replaced with plain words or explained once. Concepts are built up before they are used; results are stated, not revealed. Not a newsletter, not a paper, and not a personal essay.
 
-Reference post: `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-say-i-dont-have-that.md`. It uses the explainer shape described under Structure below, and is the register to aim for. `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md` (narrative shape) and `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` (report shape) are earlier registers that are still acceptable for comparison-heavy posts, but new posts should default to the explainer shape. `_drafts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
+Reference posts: `_drafts/2026-11-06-introducing-stark-a-local-ai-engine-for-apple-silicon.md` (announcement) and `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-say-i-dont-have-that.md` (experiment). Both use the explainer shape described under Structure below, and the Stark post is the register to aim for at the sentence level: it has had a pass to remove the announcing, meta and cleft constructions listed under "Say it, don't announce it". `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md` (narrative shape) and `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` (report shape) are earlier registers that are still acceptable for comparison-heavy posts, but new posts should default to the explainer shape. `_drafts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
 
 ## Voice
 
-- "We" by default. The team ran the experiment, built the field, shipped the fix. Use "I" only for a judgment or decision that is genuinely one person's and where that matters to the reader. Past tense for what was done, present tense for what is true.
+- Pick one pronoun per post and keep it. "We" when a team did the work. "I" when one person did, which includes announcements of things the author built alone. Do not mix them: if the post is in "I", then "my earlier posts", "I'll go through", "for myself".
 - Declarative and patient. Each paragraph carries one idea, in two to four sentences. Explain the thing before giving the number about it.
-- Orient, then deliver. Open a section by saying what it covers or what the reader needs to know, then give the result. Signposting is encouraged: one paragraph after the summary saying what the post will cover, and sentences like "A few details are worth calling out" before a list.
+- Orient, then deliver. Open a section by saying what it covers or what the reader needs to know, then give the result. The one signpost paragraph after the summary ("In this post I'll go through X, walk through Y, and then cover Z.") is the only place to narrate the post's own structure.
 - State claims directly. Do not build suspense or withhold results for a reveal.
-- No framing hooks. Do not open with what the post "started as" or "turned into", what it "reminded" you of, or what lesson it teaches. Open with what the thing is and what was tested.
+- No framing hooks. Do not open with what the post "started as" or "turned into", what it "reminded" you of, what lesson it teaches, or "a question I kept running into" followed by the question. Open with what the thing is and who or what it is for.
 - No kicker endings. Do not close on an aphorism, a callback, a turn of phrase, or "the thing I will carry forward". End with what you will do next, or a flat statement of the general point, and stop.
 - No performed casualness. No sentence fragments used as paragraph openers ("The numbers.", "Some context.", "One method problem."), no one-line paragraphs used as beats ("Then the catch."), no self-deprecating asides ("this embarrassed me a little"), no "here's the whole thing in one paragraph", no "in case you're building something similar". Say the thing.
 - If a sentence would work as the first or last line of a LinkedIn post, cut it.
@@ -18,7 +18,27 @@ Reference post: `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-
 - No rhetorical questions, no puns or metaphors in headings or prose ("prime suspect", "neuron surgery", "closed that door").
 - No hedging filler ("I think", "it seems like") unless the uncertainty is real, in which case say what is uncertain and why.
 - Understated rather than emphatic. Let the numbers carry the weight. No bold for emphasis inside prose or tables; bold is reserved for lead-in labels in bullet lists (see Formatting).
-- Admit mistakes and near-misses plainly, as method notes, not as confessions. "One sequencing mistake is worth recording." is the right register.
+- Admit mistakes and shortfalls plainly, as facts with numbers. "The dense 27B checkpoint is slower than I want it to be. The most recent run measured 51.48 tokens per second against a target of 70.8." Do not introduce them with a sentence about recording or noting them.
+- Past tense for what was done, present tense for what is true.
+
+## Say it, don't announce it
+
+The most common way a draft sounds machine-written is a sentence that announces the next sentence instead of saying something. Delete these on sight. Each row gives the pattern and what to do instead.
+
+| Pattern | Example | Fix |
+|---|---|---|
+| Worth-sentences | "One target I have not hit is worth recording.", "A few details are worth calling out." | Delete the sentence. Start with the fact. |
+| Here-is openers | "Here is what Stark is today.", "Here is what we found." | Delete. Start with the subject: "Stark is a menu bar app..." |
+| Placement commentary | "The caveat belongs here rather than at the end.", "This is the part that matters." | Delete. Put the caveat where it belongs and say nothing about having done so. |
+| Audience asides | "A short orientation for readers new to this blog." | Delete. Write the orientation paragraph without labelling it. |
+| Cleft constructions | "What it does not establish is X.", "The condition that would change the plan is Y." | Uncleft: "It does not establish X.", "Y could change that order." |
+| Mirrored closers | "The checks passed; the speed did not.", "Fast where it matters, careful where it counts." | Say the two facts in a plain sentence: "Its checks passed, so the gap is speed, not correctness." |
+| Doubled phrases | "a real app for real work", "the right tool for the right job" | Say what it is: "a separate app for work on files". |
+| Metaphor for structure | "two front doors", "the gate between chat and editing" | Name the thing: "two interfaces", "without one, a user can chat but cannot have OpenWork edit files". |
+| Question as hook | "I built it to answer a question I kept running into: can one tool serve both?" | State the goal: "I built it for two kinds of people at once: ..." |
+| Do-and-do-not headings | "Performance and what the numbers do and do not show" | A noun phrase: "Performance". Put the limits in the section body, next to each number. |
+
+A simple test: if a sentence could be deleted and the paragraph would lose no information, delete it. If a sentence's only job is to tell the reader how to feel about the next sentence, delete it.
 
 ## Vocabulary
 
@@ -61,6 +81,8 @@ Three shapes are in use. Default to the explainer shape. Use the narrative or re
 9. **What we built and why** (if anything shipped): design choices as a bulleted list with bold lead-ins, then the tuning or validation table, then what was tried and rejected.
 10. **Shipping and review**: what was merged, what review caught, how the fix was measured, and any sequencing mistake.
 11. **What's next**: concrete next steps and the condition that would change the plan. One or two paragraphs. No bullet recap, no closing line, no lessons section.
+
+For an announcement post (a product or tool the author is releasing), the same shape holds with these substitutions: the opening paragraph says what the thing is mechanically and who it is for; the results paragraph is the full factual summary (platform, what it does, headline numbers, and that it is experimental if it is); background sections explain the audiences or the problem; the method section becomes design choices as a bulleted list with bold lead-ins; the results sections are the benchmark table with each study's limits in the same paragraph as its number; and a privacy or security section states what leaves the machine and what does not. Shortfalls and unmet targets go in the results section as plain facts, not at the end.
 
 ### Narrative shape
 
@@ -105,6 +127,7 @@ Internal dataset codes (`J0`, `E1`, arm names) belong in the harness, not the po
 - The bar you set before running, and whether it was met.
 - Why it failed, not just that it failed.
 - Mistakes in method and how they were caught, stated as a rule the reader can reuse ("use a tiebreaker from a different vendor than any grader being tested").
+- Unmet targets, stated with the target and the measured number in the same sentence.
 - What a proper validation would look like if this one falls short.
 
 ## Front matter
@@ -123,7 +146,7 @@ Title test: a reader should know what the post is about from the title alone, wi
 
 - Markdown tables for any comparison of more than two numbers.
 - Numbered lists for procedures and the variants being compared; bullets for caveats, design choices, and method details.
-- Bullets may open with a short bold lead-in label followed by a period ("**Noise floor.** Regenerating the reference moved one verdict out of 376."). Use this for lists where each item is a distinct named point: method details, design choices, reasons for a decision, failure types. Do not use it for lists of rejected variants or plain caveats, and never bold inside running prose.
+- Bullets may open with a short bold lead-in label followed by a period ("**Noise floor.** Regenerating the reference moved one verdict out of 376.", "**It checks the Mac first.** Before recommending anything, Guided setup reads unified memory..."). Use this for lists where each item is a distinct named point: method details, design choices, reasons for a decision, failure types, features. Do not use it for lists of rejected variants or plain caveats, and never bold inside running prose.
 - Inline code for field names, config keys, and API types (`Choice`, `min_judge_confidence`).
 - No emoji. No images unless they carry data a table cannot.
 
