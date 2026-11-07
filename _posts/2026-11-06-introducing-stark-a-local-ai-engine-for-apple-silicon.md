@@ -10,7 +10,7 @@ title: "Introducing Stark, a Local AI Engine for Apple Silicon"
 
 <!--more-->
 
-I've spent the last few months evaluating small models and decision models like JevK5 on Macs, and every local inference tool I tried made me choose. Either it was built for engineers and baffling to everyone else, or it was friendly and slow. Stark is the engine I built for myself to stop choosing, packaged so anyone can use it.
+I've spent the last few months evaluating small models and decision models like JevK5 on Macs, and every local inference tool I tried was made for engineers and baffling to everyone else. Stark is the engine I built for everyone, not just engineers.
 
 It's a menu bar app for Apple silicon Macs (M1 or newer, macOS 26.4 or newer) with two interfaces that share one set of installed models. Beginner checks your memory, GPU and storage, picks a model that fits, downloads it, starts it, and drops you into a chat. Then it walks you into OpenWork or OpenCode and connects them in one click. Advanced opens up the full model catalog, source imports and generation settings. Underneath both is a Rust and Metal engine, forked from [Uzu](https://github.com/trymirai/uzu) and rebuilt heavily, with an OpenAI-style local API, native generation and scoring workers, and a converter for Safetensors and MLX checkpoints.
 
