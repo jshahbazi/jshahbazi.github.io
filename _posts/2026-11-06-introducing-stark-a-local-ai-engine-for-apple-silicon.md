@@ -2,7 +2,7 @@
 layout: post
 category: Apps
 tags: [local AI, LLM, Apple silicon, inference engine, Rust, Metal, open source]
-description: "Stark is a free, open-source Mac app that downloads and runs open-weight language models on Apple silicon. A guided setup picks a model for your Mac with no Terminal involved and connects it to OpenWork or OpenCode Desktop in one click, and the same engine exposes an OpenAI-style local API, native worker processes and a candidate-scoring path for people who want to build on it. On a matched checkpoint it decoded 9.2% faster than MLX-Serve."
+description: "Stark is a free, open-source Mac app that downloads and runs open-weight language models on Apple silicon. A guided setup picks a model for your Mac and connects it to OpenWork or OpenCode Desktop in one click, and the same engine exposes an OpenAI-style local API, native worker processes and a candidate-scoring path for people who want to build on it. On a matched checkpoint it decoded 9.2% faster than MLX-Serve."
 title: "Introducing Stark, a Local AI Engine for Apple Silicon"
 ---
 
@@ -14,7 +14,7 @@ Most of my earlier posts are about evaluating small models and decision models s
 
 Stark is a menu bar app for Apple silicon Macs (M1 or newer, macOS 26.4 or newer) with two interfaces, Beginner and Advanced, that share the same installed models. Beginner checks your memory, GPU budget and storage, recommends a model, downloads it, starts it and opens a chat, with no Terminal involved. It then walks you through installing OpenWork or OpenCode Desktop and connects them to the running model in one click. Advanced exposes the model catalog, imports from source checkpoints, and generation settings. Under both is a Rust and Metal engine, forked from [Uzu](https://github.com/trymirai/uzu) and heavily modified, that serves an OpenAI-style HTTP API, exposes native generation and scoring workers, and (depending on the model) converts Safetensors and MLX checkpoints into its own format. 
 
-Performance-wise, on a same-checkpoint comparison with Qwen3.8-Flash-Next on an M5 Max with 128 GB, Stark's maximum observed decode rate was 66.81 tok/s against 61.17 for MLX-Serve, a 9.2% difference. On Qwen3.5-2B across six workloads it led MLX-LM, vLLM Metal, llama.cpp and TensorFold, with 12.2% higher aggregate throughput than MLX-LM.
+Performance-wise, on a same-checkpoint comparison with Qwen3.8-Flash-Next on an M5 Max with 128 GB, Stark's maximum observed decode rate was 66.81 tok/s against 61.17 for MLX-Serve, a 9.2% difference. On Qwen3.5-2B across six workloads it led MLX-LM, vLLM Metal, llama.cpp and TensorFold, with about 12% higher throughput than MLX-LM. And for the long back-and-forth sessions that agent apps like OpenWork and OpenCode generate, Stark reuses the unchanged part of the previous prompt instead of reprocessing it: on 19,000 to 21,000-token follow-ups, prompt processing dropped from around 8 seconds down to around 1 second. The model stops making you wait while it rereads the whole conversation.
 
 In this post I'll go through the two audiences and why I did not want to pick one, cover how Stark gets a model into OpenWork or OpenCode, walk through what the Beginner path does and how it chooses a model, cover what the engine exposes for engineers, give the performance numbers and their limits, and then say what is next.
 
