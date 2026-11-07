@@ -28,7 +28,7 @@ Most existing tools serve one of these groups well and tolerate the other. I did
 
 ## Getting a model into OpenWork or OpenCode
 
-A running model by itself is a chat window. Most people want it to read a document, draft a reply, summarize a folder of notes, or edit code, and that takes a separate app that can see files and call tools. Stark does not try to be that app. It runs the model and connects two apps that already do this well: OpenWork for everyday work on files, and OpenCode Desktop for coding. Both are installed separately, and Stark can open the download page or the installed app for you.
+A running model by itself is simply a chat (more or less). However, most people want it to read a document, draft a reply, summarize a folder of notes, or edit code, and that takes a separate app that can see files and call tools. Stark does not try to be that app. It runs the model and connects two apps that already do this well: OpenWork for everyday work on files, and OpenCode Desktop for coding. Both are installed separately, and Stark can open the download page or the installed app for you.
 
 The connection is three steps from the menu bar.
 
