@@ -12,23 +12,21 @@ title: "Introducing Stark, a Local AI Engine for Apple Silicon"
 
 I've spent the last few months evaluating small models and decision models like JevK5 on Macs, and every local inference tool I tried was made for engineers and baffling to everyone else. Stark is the engine I built for everyone, not just engineers.
 
-It's a menu bar app for Apple silicon Macs (M1 or newer, macOS 26.4 or newer) with two interfaces that share one set of installed models. Beginner checks your memory, GPU and storage, picks a model that fits, downloads it, starts it, and drops you into a chat. Then it walks you into OpenWork or OpenCode and connects them in one click. Advanced opens up the full model catalog, source imports and generation settings. Underneath both is a Rust and Metal engine, forked from [Uzu](https://github.com/trymirai/uzu) and rebuilt heavily, with an OpenAI-style local API, native generation and scoring workers, and a converter for Safetensors and MLX checkpoints.
+It's a menu bar app for Apple silicon Macs (M1 or newer, macOS 26.4 or newer) with both a beginner and advanced interface that share one set of installed models. Beginner mode checks your memory, GPU and storage, picks a model that fits, downloads it, starts it, and drops you into a chat. Then it walks you into OpenWork or OpenCode and connects them in one click. Advanced mode opens up the full model catalog, source imports and generation settings. Underneath both is a Rust and Metal engine, forked from [Uzu](https://github.com/trymirai/uzu) and rebuilt heavily, with an OpenAI-style local API, native generation and scoring workers, and a converter for Safetensors and MLX checkpoints.
 
-It's also fast. Same checkpoint, same Mac, Stark decodes Qwen3.8-Flash-Next 9.2% faster than MLX-Serve, and on Qwen3.5-2B it beat MLX-LM, vLLM Metal, llama.cpp and TensorFold on every one of six workloads. The part you'll actually feel is prefix reuse: when OpenWork or OpenCode sends back a 20,000-token conversation for the next turn, Stark skips the part it has already seen. Follow-ups that took around 8 seconds to start now take around 1. No more waiting while the model rereads the whole chat.
-
-Here's what's in the rest of the post: who Stark is for, how it gets a model into OpenWork or OpenCode, what the Beginner setup does, what engineers get underneath, the benchmarks, and what's coming.
+It's pretty fast, too. Same checkpoint, same Mac, Stark decodes Qwen3.8-Flash-Next 9.2% faster than MLX-Serve, and on Qwen3.5-2B it beat MLX-LM, vLLM Metal, llama.cpp and TensorFold on every one of six workloads. The part you'll really notice is prefix reuse: when OpenWork or OpenCode sends back a 20,000-token conversation for the next turn, Stark skips the part it has already seen. Follow-ups that took around 8 seconds to start now take around 1. No more waiting while the model rereads the whole chat.
 
 ## Two audiences, one engine
 
-People who want local AI split into two camps. The first has heard you can run AI on your own machine, likes the privacy, and just wants to type a question. Everything stands in their way up front: which model, which quantization, does it fit in memory, what's a GGUF, why is Terminal involved. Most never get past that.
+People who want local AI split into two camps. The first has heard you can run AI on your own machine, likes the privacy, and/or just wants to type a question. Everything stands in their way up front: which model, which quantization, does it fit in memory, what's a GGUF, why is Terminal involved, what is a Terminal. Most never get past that, and who can blame them?  Even the simplest apps out there aren't really geared toward beginners.
 
-The second camp already knows all of that. They want to pick the exact checkpoint, watch the tokens per second, point a coding tool at a local endpoint, and sometimes skip HTTP and talk to the engine straight from their own process. Their problem is the opposite: tools that hide settings, lock the model, or run slow.
+The second camp already knows how to handle all of that. They want to pick the exact checkpoint, watch the tokens per second, point a coding tool at a local endpoint, and sometimes skip HTTP and talk to the engine straight from their own process. Their problem is the opposite: tools that hide settings, lock the model, or run slow.
 
 Most tools pick one camp and tolerate the other. I didn't want two apps, because engineers also like a model running in three clicks, and beginners eventually want the catalog. So: one engine, one set of models, two interfaces, and a menu item to switch.
 
 ## Getting a model into OpenWork or OpenCode
 
-A model on its own is a chat box. What you actually want is for it to read a document, draft a reply, summarize a folder of notes, or edit your code, and that takes an app that can see files and call tools. Stark doesn't try to be that app. It runs the model and plugs it into two apps that already do this well: OpenWork for everyday work on files, OpenCode Desktop for coding. Stark can open the download page or launch the app for you.
+A model on its own is just like a chat box. What you actually want is for it to read a document, draft a reply, summarize a folder of notes, or edit your code, and that takes an app that can see files and call tools. Stark doesn't try to be that app. It runs the model and plugs it into two apps that already do this well: OpenWork for everyday work on files, OpenCode Desktop for coding. Stark can open the download page or launch the app for you.
 
 Connecting takes three steps from the menu bar.
 
