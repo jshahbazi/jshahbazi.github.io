@@ -1,8 +1,13 @@
 # Writing style guide
 
-Target register: an engineering-blog explainer, in the manner of the Cloudflare blog (for example [Announcing Claude Managed Agents on Cloudflare](https://blog.cloudflare.com/claude-managed-agents/)). The writer is a team explaining what it did and why, patiently and in order, to a reader who is skeptical, technically literate, and short on time. The reader is an experienced software engineer, not necessarily an ML or evals specialist, so field jargon is replaced with plain words or explained once. Concepts are built up before they are used; results are stated, not revealed. Not a newsletter, not a paper, and not a personal essay.
+This blog uses two registers. Pick one before drafting and do not blend them.
 
-Reference posts: `_drafts/2026-11-06-introducing-stark-a-local-ai-engine-for-apple-silicon.md` (announcement) and `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-say-i-dont-have-that.md` (experiment). Both use the explainer shape described under Structure below, and the Stark post is the register to aim for at the sentence level: it has had a pass to remove the announcing, meta and cleft constructions listed under "Say it, don't announce it". `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md` (narrative shape) and `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` (report shape) are earlier registers that are still acceptable for comparison-heavy posts, but new posts should default to the explainer shape. `_drafts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
+- **Explainer** (default): for experiments, evals, comparisons and anything where the reader needs to weigh evidence. Patient, declarative, caveats next to numbers. Described in the sections from Voice through Formatting.
+- **Launch**: for announcing something the author built and is releasing. Short, direct, second person, benefit first, confident. Described under "Launch register" near the end. Everything in "Say it, don't announce it", "Numbers and evidence" and "Formatting" still applies to it.
+
+The explainer register is an engineering-blog explainer, in the manner of the Cloudflare blog (for example [Announcing Claude Managed Agents on Cloudflare](https://blog.cloudflare.com/claude-managed-agents/)). The writer is a team explaining what it did and why, patiently and in order, to a reader who is skeptical, technically literate, and short on time. The reader is an experienced software engineer, not necessarily an ML or evals specialist, so field jargon is replaced with plain words or explained once. Concepts are built up before they are used; results are stated, not revealed. Not a newsletter, not a paper, and not a personal essay.
+
+Reference posts. Explainer: `_drafts/2026-10-20-turning-off-the-neurons-that-make-our-model-say-i-dont-have-that.md`. Launch: `_posts/2026-11-06-introducing-stark-a-local-ai-engine-for-apple-silicon.md`. `_drafts/2026-10-12-testing-subq-snap-on-two-jobs.md` (narrative shape) and `_posts/2026-10-06-testing-openai-decisions-api-as-an-answer-grader.md` (report shape) are earlier explainer registers that are still acceptable for comparison-heavy posts, but new explainer posts should default to the explainer shape. `_drafts/2026-09-20-the-number-i-wasnt-shopping-for.md` is the register we moved away from.
 
 ## Voice
 
@@ -82,7 +87,7 @@ Three shapes are in use. Default to the explainer shape. Use the narrative or re
 10. **Shipping and review**: what was merged, what review caught, how the fix was measured, and any sequencing mistake.
 11. **What's next**: concrete next steps and the condition that would change the plan. One or two paragraphs. No bullet recap, no closing line, no lessons section.
 
-For an announcement post (a product or tool the author is releasing), the same shape holds with these substitutions: the opening paragraph says what the thing is mechanically and who it is for; the results paragraph is the full factual summary (platform, what it does, headline numbers, and that it is experimental if it is); background sections explain the audiences or the problem; the method section becomes design choices as a bulleted list with bold lead-ins; the results sections are the benchmark table with each study's limits in the same paragraph as its number; and a privacy or security section states what leaves the machine and what does not. Shortfalls and unmet targets go in the results section as plain facts, not at the end.
+Announcements of things the author built use the Launch register instead; see below.
 
 ### Narrative shape
 
@@ -149,6 +154,76 @@ Title test: a reader should know what the post is about from the title alone, wi
 - Bullets may open with a short bold lead-in label followed by a period ("**Noise floor.** Regenerating the reference moved one verdict out of 376.", "**It checks the Mac first.** Before recommending anything, Guided setup reads unified memory..."). Use this for lists where each item is a distinct named point: method details, design choices, reasons for a decision, failure types, features. Do not use it for lists of rejected variants or plain caveats, and never bold inside running prose.
 - Inline code for field names, config keys, and API types (`Choice`, `min_judge_confidence`).
 - No emoji. No images unless they carry data a table cannot.
+
+## Launch register
+
+Use this when the post announces something the author built and is releasing: an app, a library, a tool. The reader is anyone who might download it, from a non-technical Mac user to an engineer deciding whether to point their stack at it. The job is to make them want it and tell them exactly what they get, in about two thirds the length an explainer would take. Reference: `_posts/2026-11-06-introducing-stark-a-local-ai-engine-for-apple-silicon.md`.
+
+The launch register is not a different set of facts. It is the same facts, said faster, to the reader instead of about the system.
+
+### Voice
+
+- **Second person throughout.** "your Mac", "the apps you'll actually use", "what you actually want", "You own the decision rule", "you don't need to know what it means to keep going". The reader is in the room.
+- **First person singular, with motive.** "I built it for myself to stop choosing." "I want to hear what breaks." The author is a person who made a thing, not a team reporting.
+- **Contractions.** "It's", "doesn't", "didn't", "what's", "you'll". Writing them out sounds like the explainer.
+- **Confident flat claims, immediately backed.** "Stark is fast." is allowed only because the next sentence is "9.2% faster than MLX-Serve" and "won all six." Never a superlative without a number in the same breath.
+- **Benefit before mechanism, mechanism before number.** "The part you'll actually feel is prefix reuse: when OpenWork sends back a 20,000-token conversation, Stark skips the part it has already seen. Follow-ups that took around 8 seconds now take around 1." Feel, then how, then the figure.
+- **Short declaratives and deliberate fragments.** Fragments are allowed here as beats, where the explainer bans them: "No Terminal, no API keys, nothing leaves your Mac." "Not one lucky workload; Stark won all six." "No more waiting while the model rereads the whole chat." "So: one engine, one set of models, two interfaces, and a menu item to switch." Use one per paragraph at most, usually as the last line.
+- **Everyday images for mechanical things.** "a chat box", "two camps", "plugs it into", "drops you into a chat", "walks you into OpenWork", "speaks the OpenAI API". Concrete and physical, never clever. Still no puns and no extended metaphors.
+- **Rounded numbers in the body, exact numbers in the benchmark section.** "around 8 seconds", "20,000-token" in the opening; "7.6–8.6 seconds to 0.6–1.4 seconds" and "245.5" where the numbers live. Rounding must be flagged ("around", "about") and the exact figure must appear somewhere in the post or a linked source.
+- **Compressed caveats.** The explainer puts every limit next to its number. The launch register states the number, says the method and raw records are published, and links to them: "The technical page has all three studies and their limits." This is acceptable only when the link actually contains the limits.
+- **An ending that asks for something.** Where to get it, where the source is, and an invitation: "Download it at X, the source is on GitHub under MIT, and I want to hear what breaks." No aphorism, no callback, no "this is just the beginning".
+
+### What stays banned
+
+Hype is energy, not noise. All of these still apply:
+
+- No exclamation marks. No "excited", "thrilled", "proud to announce", "game-changer", "blazing", "seamless", "powerful", "supercharge". If a word would appear in a press release, replace it with what the thing does.
+- No emoji, no bold in prose, no hashtags.
+- No rhetorical questions.
+- No announcing sentences. The whole "Say it, don't announce it" table applies. "Here's what's in the rest of the post:" is the one permitted signpost, and it is a colon followed by a list, not a paragraph.
+- No claims without numbers. "fast" needs a tok/s or a percentage. "beat every engine" needs the engines named and their figures.
+- No softening of unmet targets by omission. If a shortfall is relevant to the reader's decision, it goes in the body with its number. If it is not relevant, it can live in the linked technical page, but the link must exist.
+- Headings stay plain noun phrases: "Two audiences, one engine", "What engineers get underneath", "Performance", "What's next". No sentence headings, no headings that perform.
+
+### Shape
+
+1. **Opening paragraph.** What it is in one sentence, in the reader's terms ("runs AI models on your own machine", not "an inference engine"). What it does for them in one or two sentences, naming the apps or workflows they already know. A fragment stating the three biggest absences or guarantees ("No Terminal, no API keys, nothing leaves your Mac."). Who it is for. One sentence saying the post explains how.
+2. **`<!--more-->`**.
+3. **Why I built it.** Two to four sentences. The problem the author had, what existing tools made them choose between, and that this is the thing they built to stop choosing.
+4. **What it is.** One paragraph, every major component named once, in the order a user meets them. Platform requirements in parentheses.
+5. **The performance paragraph.** Opens "It's also fast." or equivalent. Two headline comparisons with competitors named, then the one result the reader will feel in daily use, with rounded before/after figures.
+6. **Signpost.** One sentence, "Here's what's in the rest of the post:" followed by the section list.
+7. **Who it's for.** The audiences, what blocks each today, and the one-sentence design decision that serves both.
+8. **The headline workflow.** The thing a new user does first, as a numbered list of three or four steps written as instructions ("click the cat, then Connections, then Apps"). End with the escape hatch for everyone else.
+9. **Feature sections**, one per audience, as bold-lead-in bullets of one or two sentences each. Fragments inside bullets are fine ("Unified memory, GPU budget, free storage."). Supported-things lists are one dense paragraph ending with "Not yet:" and the gaps.
+10. **Performance.** One or two paragraphs. The clean sweep first with every competitor's number, then the matched-checkpoint comparison, then the peak figure. Second paragraph: records are published, link.
+11. **What's next.** One paragraph. The roadmap in one sentence, who decides what comes after, where to download, where the source is, and the invitation.
+
+Total length: roughly 1,200 to 1,500 words. If a section runs past three paragraphs, cut it.
+
+### Explainer to launch, side by side
+
+These are from the same post before and after the pass. Use them to calibrate.
+
+| Explainer | Launch |
+|---|---|
+| "Stark is a free, open-source Mac app that downloads an open-weight language model, runs it on your Mac's GPU, and makes it available to chat with or to other apps on the same machine." | "Stark is a free, open-source Mac app that runs AI models on your own machine. Pick a model, it downloads it, runs it on your Mac's GPU, and gets it working inside the apps you'll actually use." |
+| "Most of my earlier posts are about evaluating small models and decision models such as JevK5 in a training pipeline. Doing that work meant running a lot of local inference on Macs, and the tools I used for it were either comfortable for engineers and opaque to everyone else, or friendly to beginners and slow or limited for engineers." | "I've spent the last few months evaluating small models and decision models like JevK5 on Macs, and every local inference tool I tried made me choose. Either it was built for engineers and baffling to everyone else, or it was friendly and slow." |
+| "Performance-wise, on a same-checkpoint comparison with Qwen3.8-Flash-Next on an M5 Max with 128 GB, Stark's maximum observed decode rate was 66.81 tok/s against 61.17 for MLX-Serve, a 9.2% difference." | "It's also fast. Same checkpoint, same Mac, Stark decodes Qwen3.8-Flash-Next 9.2% faster than MLX-Serve." |
+| "On supported text paths Stark reuses the unchanged beginning of the previous request. On a synthetic Qwen3-4B 4-bit test with 19,000 to 21,000-token prompts, follow-up prompt processing went from 7.6 to 8.6 seconds without reuse to 0.6 to 1.4 seconds with it." | "The part you'll actually feel is prefix reuse: when OpenWork or OpenCode sends back a 20,000-token conversation for the next turn, Stark skips the part it has already seen. Follow-ups that took around 8 seconds to start now take around 1. No more waiting while the model rereads the whole chat." |
+| "A running model by itself is a chat window. Most people want it to read a document, draft a reply, summarize a folder of notes, or edit code, and that takes a separate app that can see files and call tools." | "A model on its own is a chat box. What you actually want is for it to read a document, draft a reply, summarize a folder of notes, or edit your code, and that takes an app that can see files and call tools." |
+| "So Stark has one engine, one set of installed models, and two interfaces. Switching between Beginner and Advanced is a menu item." | "So: one engine, one set of models, two interfaces, and a menu item to switch." |
+| "**It checks the Mac first.** Before recommending anything, Guided setup reads unified memory, estimates the GPU budget, and checks free storage. The recommendation depends on the result." | "**It checks your Mac first.** Unified memory, GPU budget, free storage. The recommendation depends on what it finds." |
+| "The caller owns the decision rule. This is what I use for JevK5 and the app's Decision mode, and it is the reason the engine exists in its current form." | "You own the decision rule. This is what runs JevK5 and the app's Decision mode, and it's why the engine exists." |
+| "Embeddings, the Responses API and JSON-schema structured output are not supported." | "Not yet: embeddings, the Responses API, JSON-schema output." |
+| "The immediate work is adding reviewed tool-calling templates for more models. ... The condition that would change the plan is feedback from the first group of users." | "More models with reviewed tool-calling templates, more models full stop, and image support beyond Qwen3.5. Past that, the people using it decide." |
+
+The pattern in every row: drop the hedging frame, address the reader, cut the sentence to the clause that carries the fact, and let the number or the concrete noun do the work.
+
+### Front matter for launch posts
+
+Same fields. The title is still descriptive ("Introducing Stark, a Local AI Engine for Apple Silicon"). The description may lead with the biggest win instead of the plainest summary, but it is still one or two sentences with the numbers in them and no exclamation mark.
 
 ## LinkedIn posts announcing a blog post
 
