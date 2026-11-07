@@ -1,7 +1,7 @@
 ---
 layout: post
-category: Infrastructure
-tags: [local AI, Apple silicon, inference engine, Rust, Metal, open source]
+category: Apps
+tags: [local AI, LLM, Apple silicon, inference engine, Rust, Metal, open source]
 description: "Stark is a free, open-source Mac app that downloads and runs open-weight language models on Apple silicon. A guided setup picks a model for your Mac with no Terminal involved and connects it to OpenWork or OpenCode Desktop in one click, and the same engine exposes an OpenAI-style local API, native worker processes and a candidate-scoring path for people who want to build on it. On a matched checkpoint it decoded 9.2% faster than MLX-Serve."
 title: "Introducing Stark, a Local AI Engine for Apple Silicon"
 ---
