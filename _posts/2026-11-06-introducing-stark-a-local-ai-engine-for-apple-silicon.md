@@ -16,7 +16,7 @@ It's a menu bar app for Apple silicon Macs (M1 or newer, macOS 26.4 or newer) wi
 
 It's pretty fast, too. Same checkpoint, same Mac, Stark decodes Qwen3.8-Flash-Next 9.2% faster than MLX-Serve, and on Qwen3.5-2B it beat MLX-LM, vLLM Metal, llama.cpp and TensorFold on every one of six workloads. The part you'll really notice is prefix reuse: when OpenWork or OpenCode sends back a 20,000-token conversation for the next turn, Stark skips the part it has already seen. Follow-ups that took around 8 seconds to start now take around 1. No more waiting while the model rereads the whole chat.
 
-## Two audiences, one engine
+## Made for everyone who wants to use local AI
 
 People who want local AI split into two camps. The first has heard you can run AI on your own machine, likes the privacy, and/or just wants to type a question. Everything stands in their way up front: which model, which quantization, does it fit in memory, what's a GGUF, why is Terminal involved, what is a Terminal. Most never get past that, and who can blame them?  Even the simplest apps out there aren't really geared toward beginners.
 
@@ -36,9 +36,9 @@ Connecting takes three steps from the menu bar.
 
 OpenCode Desktop works the same way. Anything else that speaks the OpenAI API gets a Connect your own app option with the Base URL, API key and Model ID ready to paste.
 
-## What the Beginner path does
+## What Beginner mode does
 
-Beginner is a five-step guided setup, and a lot of the design effort went here.
+Beginner mode is a five-step guided setup, and a lot of the design effort went here.
 
 - **It checks your Mac first.** Unified memory, GPU budget, free storage. The recommendation depends on what it finds.
 - **It asks what you want to do, not which model you want.** Writing, files or coding. A model name appears, but you don't need to know what it means to keep going.
@@ -46,9 +46,9 @@ Beginner is a five-step guided setup, and a lot of the design effort went here.
 - **It ends in a chat.** You see the model working before you're asked to connect anything.
 - **It continues into OpenWork or OpenCode.** The remaining steps install the app, choose a folder, and make the connection above.
 
-## What engineers get underneath
+## What Advanced mode does
 
-Advanced is the catalog, source imports and generation settings. The interesting parts are below it.
+Advanced mode is the catalog, source imports and generation settings. The interesting parts are below it.
 
 - **A local HTTP API.** `http://127.0.0.1:8000/v1` with `GET /v1/models`, `GET /v1/capabilities` and `POST /v1/chat/completions`, JSON or SSE streaming. Omit `model` and it targets whatever is running. Bearer auth with a key in macOS Keychain, loopback only, browser-origin requests rejected. Paste the Base URL, key and model ID into any OpenAI-compatible client.
 - **Native worker processes.** `stark generate` and `stark score` take one JSON request per line on stdin and answer on stdout. You own the chat template, tool execution and the agent loop; the worker owns the model. No HTTP server in the middle.
